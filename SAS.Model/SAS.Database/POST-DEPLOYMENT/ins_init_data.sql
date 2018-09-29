@@ -30,3 +30,13 @@ VALUES
 INSERT INTO [usr].[Company] ([Name], [ActiveStatusID])
 VALUES
 ('JTI', 1)
+
+--TODO: REMOVE--
+-------------------------------------------------------------------
+INSERT INTO [usr].[Department] ([Name], [ActiveStatusID])
+VALUES('IT', 1)
+
+INSERT INTO [usr].[User] (FirstName, MiddleName, LastName, SAPNumber, TabNumber, Username, UserTypeID, ActiveStatusID, CompanyID, DepartmentID)
+VALUES
+('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 0, 1, 1)
+-------------------------------------------------------------------
