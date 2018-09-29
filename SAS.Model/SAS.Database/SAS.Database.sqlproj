@@ -60,6 +60,7 @@
     <Folder Include="TABLE" />
     <Folder Include="SECURITY" />
     <Folder Include="SECURITY\SCHEMA" />
+    <Folder Include="POST-DEPLOYMENT" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="TABLE\User.sql" />
@@ -75,5 +76,8 @@
     <Build Include="SECURITY\SCHEMA\rqs.sql" />
     <Build Include="SECURITY\SCHEMA\usr.sql" />
     <Build Include="SECURITY\SCHEMA\def.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="POST-DEPLOYMENT\ins_init_data.sql" />
   </ItemGroup>
 </Project>
