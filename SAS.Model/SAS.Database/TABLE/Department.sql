@@ -1,4 +1,4 @@
-﻿CREATE TABLE [usr].[Departments](
+﻿CREATE TABLE [usr].[Department](
 	[ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[Name] [nvarchar](128) NOT NULL,
 	[ActiveStatusID] [int] NOT NULL,
