@@ -1,6 +1,6 @@
-﻿CREATE TABLE [loc].[AreaManager](
+﻿CREATE TABLE [loc].[LocationManager](
 	[ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[AreaID] [int] NOT NULL,
+	[LocationID] [int] NOT NULL,
 	[UserID] [int] NOT NULL,
 	[DLM] [datetime2](7) NULL
 )

@@ -66,8 +66,8 @@
     <Build Include="TABLE\User.sql" />
     <Build Include="TABLE\GroupType.sql" />
     <Build Include="TABLE\ActiveStatus.sql" />
-    <Build Include="TABLE\Area.sql" />
-    <Build Include="TABLE\AreaManager.sql" />
+    <Build Include="TABLE\Location.sql" />
+    <Build Include="TABLE\LocationManager.sql" />
     <Build Include="TABLE\Company.sql" />
     <Build Include="TABLE\Department.sql" />
     <Build Include="TABLE\Group.sql" />
@@ -76,6 +76,8 @@
     <Build Include="SECURITY\SCHEMA\rqs.sql" />
     <Build Include="SECURITY\SCHEMA\usr.sql" />
     <Build Include="SECURITY\SCHEMA\def.sql" />
+    <Build Include="TABLE\Area.sql" />
+    <Build Include="TABLE\AreaLocations.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="POST-DEPLOYMENT\ins_init_data.sql" />

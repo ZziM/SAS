@@ -1,0 +1,8 @@
+﻿CREATE TABLE [loc].[AreaLocations]
+(
+	[ID] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+	[AreaID] INT NOT NULL,
+	[LocationID] INT NOT NULL,
+	[ActiveStatusID] [int] NOT NULL,
+	[DLM] DATETIME2 NOT NULL DEFAULT(GETDATE())
+)

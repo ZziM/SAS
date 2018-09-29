@@ -1,6 +1,7 @@
-﻿CREATE TABLE [loc].[Area](
-	[ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Name] [nvarchar](64) NOT NULL,
-	[ActiveStatusID] [int] NOT NULL,
-	[DLM] [datetime2](7) NULL
+﻿CREATE TABLE [loc].[Area]
+(
+	[ID] INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	[Name] [NVARCHAR](64) NOT NULL,
+	[ActiveStatusID] [INT] NOT NULL,
+	[DLM] [DATETIME2](7) NOT NULL DEFAULT(GETDATE())
 )
