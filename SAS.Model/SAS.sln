@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.Model", "SAS.Model\SAS.Model.csproj", "{35DACE88-4679-49ED-A818-F42E1C12C955}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SAS.Database", "SAS.Database\SAS.Database.sqlproj", "{312301DC-2303-4A53-B662-5F2EDACE85FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.Web", "SAS.Web\SAS.Web.csproj", "{8ED79746-964F-4CFC-9672-97FB188D5F89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{312301DC-2303-4A53-B662-5F2EDACE85FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{312301DC-2303-4A53-B662-5F2EDACE85FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{312301DC-2303-4A53-B662-5F2EDACE85FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8ED79746-964F-4CFC-9672-97FB188D5F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED79746-964F-4CFC-9672-97FB188D5F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED79746-964F-4CFC-9672-97FB188D5F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED79746-964F-4CFC-9672-97FB188D5F89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
