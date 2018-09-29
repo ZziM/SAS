@@ -1,0 +1,6 @@
+﻿CREATE TABLE [def].[ActiveStatus]
+(
+	[ID] INT NOT NULL PRIMARY KEY,
+	[Name] NVARCHAR(64) NOT NULL,
+	[DLM] [datetime2](7) NOT NULL DEFAULT(GETDATE()),
+)

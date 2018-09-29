@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{312301dc-2303-4a53-b662-5f2edace85ff}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -57,5 +57,23 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="TABLE" />
+    <Folder Include="SECURITY" />
+    <Folder Include="SECURITY\SCHEMA" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="TABLE\User.sql" />
+    <Build Include="TABLE\GroupType.sql" />
+    <Build Include="TABLE\ActiveStatus.sql" />
+    <Build Include="TABLE\Area.sql" />
+    <Build Include="TABLE\AreaManager.sql" />
+    <Build Include="TABLE\Company.sql" />
+    <Build Include="TABLE\Department.sql" />
+    <Build Include="TABLE\Group.sql" />
+    <Build Include="TABLE\UserType.sql" />
+    <Build Include="SECURITY\SCHEMA\loc.sql" />
+    <Build Include="SECURITY\SCHEMA\rqs.sql" />
+    <Build Include="SECURITY\SCHEMA\usr.sql" />
+    <Build Include="SECURITY\SCHEMA\def.sql" />
   </ItemGroup>
 </Project>
