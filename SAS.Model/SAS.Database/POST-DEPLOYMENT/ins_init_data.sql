@@ -38,5 +38,5 @@ VALUES('IT', 1)
 
 INSERT INTO [usr].[User] (FirstName, MiddleName, LastName, SAPNumber, TabNumber, Username, UserTypeID, ActiveStatusID, CompanyID, DepartmentID)
 VALUES
-('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 0, 1, 1)
+('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1)
 -------------------------------------------------------------------
