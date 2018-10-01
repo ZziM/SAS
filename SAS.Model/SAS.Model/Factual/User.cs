@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SAS.Model.Factual
 {
-    public abstract class User : DbOjbect, IUser
+    public abstract class User : DbObject, IUser
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

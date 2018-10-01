@@ -36,7 +36,26 @@ VALUES
 INSERT INTO [usr].[Department] ([Name], [ActiveStatusID])
 VALUES('IT', 1)
 
-INSERT INTO [usr].[User] (FirstName, MiddleName, LastName, SAPNumber, TabNumber, Username, UserTypeID, ActiveStatusID, CompanyID, DepartmentID)
+INSERT INTO [usr].[User] ([FirstName], [MiddleName], [LastName], [SAPNumber], [TabNumber], [Username], [UserTypeID], [ActiveStatusID], [CompanyID], [DepartmentID])
 VALUES
 ('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1)
+
+INSERT INTO [loc].[Location] ([Name], [ActiveStatusID])
+VALUES
+('Проходная', 1),
+('Проходная-2', 1)
+
+INSERT INTO [loc].[LocationManager] ([LocationID], [UserID])
+VALUES
+(1, 1),
+(1, 1)
+
+INSERT INTO [loc].[Area] ([Name], [ActiveStatusID])
+VALUES
+('IT', 1)
+
+INSERT INTO [loc].[AreaLocations] ([AreaID], [LocationID], [ActiveStatusID])
+VALUES
+(1, 1, 1),
+(1, 2, 1)
 -------------------------------------------------------------------

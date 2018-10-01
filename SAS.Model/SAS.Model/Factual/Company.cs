@@ -4,7 +4,7 @@ using SAS.Model.Abstract;
 
 namespace SAS.Model.Factual
 {
-    public class Company : DbOjbect, ICompany
+    public class Company : DbObject, ICompany
     {
         public string Name { get; set; }
         IEnumerable<IEmployee> ICompany.Employees

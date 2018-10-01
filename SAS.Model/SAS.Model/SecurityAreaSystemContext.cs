@@ -17,6 +17,8 @@ namespace SAS.Model
         public DbSet<Contractor> Contractors { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Area> Areas { get; set; }
         public SecurityAreaSystemContext() : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=SAS.DB;Integrated Security=True")
         {
 
@@ -60,6 +62,36 @@ namespace SAS.Model
                 .ToTable("Department", "usr")
                 .Property(item => item.ActiveStatus)
                 .HasColumnName("ActiveStatusID");
+
+            modelBuilder.Entity<Location>()
+                .ToTable("Location", "loc")
+                .Property(item => item.ActiveStatus)
+                .HasColumnName("ActiveStatusID");
+
+            modelBuilder.Entity<Area>()
+                .ToTable("Area", "loc")
+                .Property(item => item.ActiveStatus)
+                .HasColumnName("ActiveStatusID");
+
+            modelBuilder.Entity<Area>()
+                .HasMany(item => item.Locations)
+                .WithMany(item => item.Areas)
+                .Map(la =>
+                {
+                    la.MapLeftKey("AreaID");
+                    la.MapRightKey("LocationID");
+                    la.ToTable("AreaLocations", "loc");
+                });
+
+            modelBuilder.Entity<Location>()
+                .HasMany(item => item.LocationManagers)
+                .WithMany()
+                .Map(llm =>
+                {
+                    llm.MapLeftKey("ID");
+                    llm.MapRightKey("LocationID");
+                    llm.ToTable("LocationManager", "loc");
+                });
         }
     }
 }

@@ -47,21 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IArea.cs" />
     <Compile Include="Abstract\ICompany.cs" />
     <Compile Include="Abstract\IContractor.cs" />
     <Compile Include="Abstract\IDbObject.cs" />
     <Compile Include="Abstract\IDepartment.cs" />
     <Compile Include="Abstract\IEmployee.cs" />
     <Compile Include="Abstract\IEmployeeJTI.cs" />
+    <Compile Include="Abstract\ILocation.cs" />
     <Compile Include="Abstract\IUser.cs" />
     <Compile Include="Abstract\IVisitor.cs" />
+    <Compile Include="Factual\Area.cs" />
     <Compile Include="Factual\Company.cs" />
     <Compile Include="Factual\Contractor.cs" />
     <Compile Include="Factual\DbEnums.cs" />
-    <Compile Include="Factual\DbOjbect.cs" />
+    <Compile Include="Factual\DbObject.cs" />
     <Compile Include="Factual\Department.cs" />
     <Compile Include="Factual\Employee.cs" />
     <Compile Include="Factual\EmployeeJTI.cs" />
+    <Compile Include="Factual\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityAreaSystemContext.cs" />
     <Compile Include="Factual\User.cs" />
