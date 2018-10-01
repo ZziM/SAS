@@ -18,7 +18,7 @@ namespace SAS.Model
         public DbSet<Department> Departments { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<Area> Areas { get; set; }
+        public DbSet<Group> Groups { get; set; }
         public SecurityAreaSystemContext() : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=SAS.DB;Integrated Security=True")
         {
 
@@ -28,9 +28,10 @@ namespace SAS.Model
         {
             Database.SetInitializer<SecurityAreaSystemContext>(null);
 
+            #region User table
             modelBuilder.Entity<User>()
-                .ToTable("User", "usr")
-                .HasKey(item => item.ID);
+               .ToTable("User", "usr")
+               .HasKey(item => item.ID);
 
             modelBuilder.Entity<User>()
                 .Property(item => item.ActiveStatus)
@@ -53,35 +54,27 @@ namespace SAS.Model
                 .WithMany(item => item.Employees)
                 .HasForeignKey(item => item.CompanyID);
 
+            #endregion
+
+            #region Company table
             modelBuilder.Entity<Company>()
                 .ToTable("Company", "usr")
                 .Property(item => item.ActiveStatus)
                 .HasColumnName("ActiveStatusID");
+            #endregion
 
+            #region Department table
             modelBuilder.Entity<Department>()
                 .ToTable("Department", "usr")
                 .Property(item => item.ActiveStatus)
                 .HasColumnName("ActiveStatusID");
+            #endregion
 
+            #region Location table
             modelBuilder.Entity<Location>()
                 .ToTable("Location", "loc")
                 .Property(item => item.ActiveStatus)
                 .HasColumnName("ActiveStatusID");
-
-            modelBuilder.Entity<Area>()
-                .ToTable("Area", "loc")
-                .Property(item => item.ActiveStatus)
-                .HasColumnName("ActiveStatusID");
-
-            modelBuilder.Entity<Area>()
-                .HasMany(item => item.Locations)
-                .WithMany(item => item.Areas)
-                .Map(la =>
-                {
-                    la.MapLeftKey("AreaID");
-                    la.MapRightKey("LocationID");
-                    la.ToTable("AreaLocations", "loc");
-                });
 
             modelBuilder.Entity<Location>()
                 .HasMany(item => item.LocationManagers)
@@ -92,6 +85,28 @@ namespace SAS.Model
                     llm.MapRightKey("LocationID");
                     llm.ToTable("LocationManager", "loc");
                 });
+            #endregion
+
+            #region Group table
+            modelBuilder.Entity<Group>()
+                .ToTable("Group", "loc")
+                .Property(item => item.ActiveStatus)
+                .HasColumnName("ActiveStatusID");
+
+            modelBuilder.Entity<Group>()
+                .Property(item => item.Type)
+                .HasColumnName("GroupTypeID");
+
+            modelBuilder.Entity<Group>()
+                .HasMany(item => item.Locations)
+                .WithMany(item => item.Areas)
+                .Map(la =>
+                {
+                    la.MapLeftKey("GroupID");
+                    la.MapRightKey("LocationID");
+                    la.ToTable("GroupLocations", "loc");
+                });
+            #endregion
         }
     }
 }

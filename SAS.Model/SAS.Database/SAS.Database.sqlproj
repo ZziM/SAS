@@ -76,8 +76,7 @@
     <Build Include="SECURITY\SCHEMA\rqs.sql" />
     <Build Include="SECURITY\SCHEMA\usr.sql" />
     <Build Include="SECURITY\SCHEMA\def.sql" />
-    <Build Include="TABLE\Area.sql" />
-    <Build Include="TABLE\AreaLocations.sql" />
+    <Build Include="TABLE\GroupLocations.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="POST-DEPLOYMENT\ins_init_data.sql" />

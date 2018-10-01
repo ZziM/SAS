@@ -4,18 +4,17 @@ using System.Linq;
 
 namespace SAS.Model.Factual
 {
-    public class Area : DbObject, IArea
+    public class Group : DbObject, IGroup
     {
         public string Name { get; set; }
-        IEnumerable<ILocation> IArea.Locations
+        public GroupType Type { get; set; }
+        IEnumerable<ILocation> IGroup.Locations
         {
             get => Locations;
             set
             {
                 if (value is IEnumerable<Location> locations)
-                {
                     Locations = locations.ToList();
-                }
             }
         }
 

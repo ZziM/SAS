@@ -12,4 +12,11 @@
         Contractor,
         Visitor
     }
+
+    public enum GroupType
+    {
+        ABC,
+        FortNet,
+        Other
+    }
 }

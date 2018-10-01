@@ -45,17 +45,24 @@ VALUES
 ('Проходная', 1),
 ('Проходная-2', 1)
 
-INSERT INTO [loc].[LocationManager] ([LocationID], [UserID])
+INSERT INTO [loc].[LocationManager] ([LocationID], [UserID], [ActiveStatusID])
 VALUES
-(1, 1),
-(1, 1)
+(1, 1, 1),
+(1, 1, 1)
 
-INSERT INTO [loc].[Area] ([Name], [ActiveStatusID])
+
+INSERT INTO [loc].[Group] ([Name], [GroupTypeID], [ActiveStatusID])
 VALUES
-('IT', 1)
+('IT', 0, 1)
 
-INSERT INTO [loc].[AreaLocations] ([AreaID], [LocationID], [ActiveStatusID])
+INSERT INTO [loc].[GroupLocations] ([GroupID], [LocationID], [ActiveStatusID])
 VALUES
 (1, 1, 1),
 (1, 2, 1)
 -------------------------------------------------------------------
+
+INSERT INTO [loc].[GroupType] ([ID], [Type])
+VALUES
+(0, 'ABC'),
+(1, 'FortNet'),
+(2, 'Other')

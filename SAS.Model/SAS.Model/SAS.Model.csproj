@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IArea.cs" />
+    <Compile Include="Abstract\IGroup.cs" />
     <Compile Include="Abstract\ICompany.cs" />
     <Compile Include="Abstract\IContractor.cs" />
     <Compile Include="Abstract\IDbObject.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Abstract\ILocation.cs" />
     <Compile Include="Abstract\IUser.cs" />
     <Compile Include="Abstract\IVisitor.cs" />
-    <Compile Include="Factual\Area.cs" />
+    <Compile Include="Factual\Group.cs" />
     <Compile Include="Factual\Company.cs" />
     <Compile Include="Factual\Contractor.cs" />
     <Compile Include="Factual\DbEnums.cs" />

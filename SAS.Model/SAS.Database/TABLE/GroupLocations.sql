@@ -1,7 +1,7 @@
-﻿CREATE TABLE [loc].[AreaLocations]
+﻿CREATE TABLE [loc].[GroupLocations]
 (
 	[ID] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	[AreaID] INT NOT NULL,
+	[GroupID] INT NOT NULL,
 	[LocationID] INT NOT NULL,
 	[ActiveStatusID] [int] NOT NULL,
 	[DLM] DATETIME2 NOT NULL DEFAULT(GETDATE())

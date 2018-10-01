@@ -21,12 +21,12 @@ namespace SAS.Model.Factual
             }
         }
 
-        IEnumerable<IArea> ILocation.Areas
+        IEnumerable<IGroup> ILocation.Areas
         {
             get => Areas;
             set
             {
-                if (value is IEnumerable<Area> areas)
+                if (value is IEnumerable<Group> areas)
                     Areas = areas.ToList();
             }
         }
@@ -34,7 +34,7 @@ namespace SAS.Model.Factual
         #region EF
         public virtual ICollection<Employee> LocationManagers { get; set; }
 
-        public virtual ICollection<Area> Areas { get; set; }
+        public virtual ICollection<Group> Areas { get; set; }
         #endregion
     }
 }

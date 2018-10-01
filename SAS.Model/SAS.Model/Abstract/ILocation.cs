@@ -10,6 +10,6 @@ namespace SAS.Model.Abstract
     {
         string Name { get; set; }
         IEnumerable<IEmployee> LocationManagers { get; set; }
-        IEnumerable<IArea> Areas { get; set; }
+        IEnumerable<IGroup> Areas { get; set; }
     }
 }
