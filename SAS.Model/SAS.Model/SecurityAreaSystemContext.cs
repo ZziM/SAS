@@ -85,7 +85,7 @@ namespace SAS.Model
                 .HasForeignKey(item => item.CompanyID);
             }
         }
-        class CompanyConfiguration      : EntityTypeConfiguration<Company>
+        class CompanyConfiguration          : EntityTypeConfiguration<Company>
         {
             public CompanyConfiguration()
             {
@@ -94,7 +94,7 @@ namespace SAS.Model
                 .HasColumnName("ActiveStatusID");
             }
         }
-        class DepartmentConfiguration   : EntityTypeConfiguration<Department>
+        class DepartmentConfiguration       : EntityTypeConfiguration<Department>
         {
             public DepartmentConfiguration()
             {
@@ -103,7 +103,7 @@ namespace SAS.Model
                 .HasColumnName("ActiveStatusID");
             }
         }
-        class LocationConfiguration     : EntityTypeConfiguration<Location>
+        class LocationConfiguration         : EntityTypeConfiguration<Location>
         {
             public LocationConfiguration()
             {
@@ -121,7 +121,7 @@ namespace SAS.Model
                 });
             }
         }
-        class GroupConfiguration        : EntityTypeConfiguration<Group>
+        class GroupConfiguration            : EntityTypeConfiguration<Group>
         {
             public GroupConfiguration()
             {
@@ -143,7 +143,7 @@ namespace SAS.Model
                 });
             }
         }
-        class CustomerConfiguration : EntityTypeConfiguration<Customer>
+        class CustomerConfiguration         : EntityTypeConfiguration<Customer>
         {
             public CustomerConfiguration()
             {
@@ -163,6 +163,18 @@ namespace SAS.Model
                 {
                     item.Requires("TypeID").HasValue(Convert.ToInt32(CustomerType.JTI));
                 });
+            }
+        }
+        class CustomerEmployeeConfiguration : EntityTypeConfiguration<CustomerEmployee>
+        {
+            public CustomerEmployeeConfiguration()
+            {
+                HasRequired(item => item.Company)
+                    .WithMany()
+                    .HasForeignKey(item => item.CompanyID);
+                HasRequired(item => item.Department)
+                    .WithMany()
+                    .HasForeignKey(item => item.DepartmentID);
             }
         }
     }
