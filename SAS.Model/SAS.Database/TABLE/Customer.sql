@@ -1,0 +1,16 @@
+﻿CREATE TABLE [rqs].[Customer]
+(
+	[ID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[FirstName] NVARCHAR(128) NULL,
+	[MiddleName] NVARCHAR(128) NULL,
+	[LastName] NVARCHAR(128) NULL,
+	[TabNumber] NVARCHAR(16) NULL,
+	[SAPNumber] NVARCHAR(16) NULL,
+	[Username] NVARCHAR(64) NULL,
+	[TypeID] INT NOT NULL,
+	[DepartmentID] INT NULL,
+	[CompanyID] INT NULL,
+	[AdditionalInformation] NVARCHAR(2048),
+	[ActiveStatusID] INT NOT NULL,
+	[DLM] DATETIME2 NOT NULL DEFAULT(GETDATE()),
+)

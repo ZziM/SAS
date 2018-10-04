@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICustomer.cs" />
+    <Compile Include="Abstract\ICustomerContractor.cs" />
+    <Compile Include="Abstract\ICustomerEmployee.cs" />
+    <Compile Include="Abstract\ICustomerJTI.cs" />
+    <Compile Include="Abstract\ICustomerVisitor.cs" />
     <Compile Include="Abstract\IGroup.cs" />
     <Compile Include="Abstract\ICompany.cs" />
     <Compile Include="Abstract\IContractor.cs" />
@@ -57,6 +62,11 @@
     <Compile Include="Abstract\ILocation.cs" />
     <Compile Include="Abstract\IUser.cs" />
     <Compile Include="Abstract\IVisitor.cs" />
+    <Compile Include="Factual\Customer.cs" />
+    <Compile Include="Factual\CustomerContractor.cs" />
+    <Compile Include="Factual\CustomerEmployee.cs" />
+    <Compile Include="Factual\CustomerJTI.cs" />
+    <Compile Include="Factual\CustomerVisitor.cs" />
     <Compile Include="Factual\Group.cs" />
     <Compile Include="Factual\Company.cs" />
     <Compile Include="Factual\Contractor.cs" />

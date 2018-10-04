@@ -1,0 +1,5 @@
+﻿CREATE TABLE [rqs].[RequestType]
+(
+	[ID] INT NOT NULL PRIMARY KEY,
+	[Type] NVARCHAR(128) NOT NULL
+)

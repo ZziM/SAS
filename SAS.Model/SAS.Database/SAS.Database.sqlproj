@@ -77,6 +77,10 @@
     <Build Include="SECURITY\SCHEMA\usr.sql" />
     <Build Include="SECURITY\SCHEMA\def.sql" />
     <Build Include="TABLE\GroupLocations.sql" />
+    <Build Include="TABLE\Request.sql" />
+    <Build Include="TABLE\RequestType.sql" />
+    <Build Include="TABLE\Customer.sql" />
+    <Build Include="TABLE\CustomerType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="POST-DEPLOYMENT\ins_init_data.sql" />

@@ -21,12 +21,6 @@ VALUES
 (1, 'Contractor'),
 (2, 'Visitor')
 
-INSERT INTO [loc].[GroupType] ([ID], [Type])
-VALUES
-(0, 'ABC'),
-(1, 'FortNet'),
-(2, 'Other')
-
 INSERT INTO [usr].[Company] ([Name], [ActiveStatusID])
 VALUES
 ('JTI', 1)
@@ -36,9 +30,9 @@ VALUES
 INSERT INTO [usr].[Department] ([Name], [ActiveStatusID])
 VALUES('IT', 1)
 
-INSERT INTO [usr].[User] ([FirstName], [MiddleName], [LastName], [SAPNumber], [TabNumber], [Username], [UserTypeID], [ActiveStatusID], [CompanyID], [DepartmentID])
+INSERT INTO [usr].[User] ([FirstName], [MiddleName], [LastName], [SAPNumber], [TabNumber], [Username], [UserTypeID], [ActiveStatusID], [CompanyID], [DepartmentID], [Email])
 VALUES
-('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1)
+('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1, 'Makolov.Denis@gmail.com')
 
 INSERT INTO [loc].[Location] ([Name], [ActiveStatusID])
 VALUES
@@ -59,6 +53,10 @@ INSERT INTO [loc].[GroupLocations] ([GroupID], [LocationID], [ActiveStatusID])
 VALUES
 (1, 1, 1),
 (1, 2, 1)
+
+INSERT INTO [rqs].[Customer] ([FirstName], [MiddleName], [LastName], [TypeID], [AdditionalInformation], [ActiveStatusID], [CompanyID], [DepartmentID], [Username])
+VALUES
+('Denis', 'Sergeevich', 'Makilov', 1, 'AdditionaInfo', 1, 1, 1, 'JTICORP\CSTMAKILOD')
 -------------------------------------------------------------------
 
 INSERT INTO [loc].[GroupType] ([ID], [Type])
@@ -66,3 +64,15 @@ VALUES
 (0, 'ABC'),
 (1, 'FortNet'),
 (2, 'Other')
+
+INSERT INTO [rqs].[RequestType] ([ID], [Type])
+VALUES
+(0, 'JTI'),
+(1, 'Contractor'),
+(2, 'Visitor')
+
+INSERT INTO [rqs].[CustomerType] ([ID], [Type])
+VALUES
+(0, 'JTI'),
+(1, 'Contractor'),
+(2, 'Visitor')

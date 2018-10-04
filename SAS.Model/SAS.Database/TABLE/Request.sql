@@ -1,0 +1,15 @@
+﻿CREATE TABLE [rqs].[Request]
+(
+	[ID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[CreatorID] INT NOT NULL,
+	[CustomerID] INT NOT NULL,
+	[Name] NVARCHAR(128) NOT NULL,
+	[TypeID] INT NOT NULL,
+	[AdditionalInformation] NVARCHAR(2048),
+	[BusinessReason] NVARCHAR(2048) NOT NULL,
+	[CreateDate] DATETIME2 NOT NULL DEFAULT(GETDATE()),
+	[StartAccessDate] DATETIME2 NOT NULL,
+	[EndAccessDate] DATETIME2,
+	[ActiveStatusID] INT NOT NULL,
+	[DLM] DATETIME2 NOT NULL DEFAULT(GETDATE())
+)
