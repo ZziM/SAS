@@ -7,7 +7,7 @@
 	[TabNumber] NVARCHAR(16) NULL,
 	[SAPNumber] NVARCHAR(16) NULL,
 	[Username] NVARCHAR(64) NULL,
-	[TypeID] INT NOT NULL,
+	[CustomerTypeID] INT NOT NULL,
 	[DepartmentID] INT NULL,
 	[CompanyID] INT NULL,
 	[AdditionalInformation] NVARCHAR(2048),

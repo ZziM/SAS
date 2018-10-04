@@ -12,19 +12,23 @@ namespace SAS.Model
     public class SecurityAreaSystemContext : DbContext
     {
         #region DbSets
-        public DbSet<User> Users { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Visitor> Visitors { get; set; }
-        public DbSet<EmployeeJTI> EmployeesJTI { get; set; }
-        public DbSet<Contractor> Contractors { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Location> Locations { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<CustomerEmployee> CustomerEmployees { get; set; }
-        public DbSet<CustomerContractor> CustomerContractors { get; set; }
-        public DbSet<CustomerJTI> CustomersJTI { get; set; }
+        public DbSet<User> Users                                { get; set; }
+        public DbSet<Employee> Employees                        { get; set; }
+        public DbSet<Visitor> Visitors                          { get; set; }
+        public DbSet<EmployeeJTI> EmployeesJTI                  { get; set; }
+        public DbSet<Contractor> Contractors                    { get; set; }
+        public DbSet<Department> Departments                    { get; set; }
+        public DbSet<Company> Companies                         { get; set; }
+        public DbSet<Location> Locations                        { get; set; }
+        public DbSet<Group> Groups                              { get; set; }
+        public DbSet<Customer> Customers                        { get; set; }
+        public DbSet<CustomerEmployee> CustomerEmployees        { get; set; }
+        public DbSet<CustomerContractor> CustomerContractors    { get; set; }
+        public DbSet<CustomerJTI> CustomersJTI                  { get; set; }
+        public DbSet<Request> Requests                          { get; set; }
+        public DbSet<RequestJTI> GetRequestsJTI                 { get; set; }
+        public DbSet<RequestContractor> RequestContractors      { get; set; }
+        public DbSet<RequestVisitor> RequestVisitors            { get; set; }
         #endregion
 
         #region ctor
@@ -38,16 +42,17 @@ namespace SAS.Model
         {
             Database.SetInitializer<SecurityAreaSystemContext>(null);
 
-            modelBuilder.Configurations.Add(new UserConfiguration());
-            modelBuilder.Configurations.Add(new EmployeeConfiguration());
-            modelBuilder.Configurations.Add(new CompanyConfiguration());
-            modelBuilder.Configurations.Add(new DepartmentConfiguration());
-            modelBuilder.Configurations.Add(new LocationConfiguration());
-            modelBuilder.Configurations.Add(new GroupConfiguration());
-            modelBuilder.Configurations.Add(new CustomerConfiguration());
+            modelBuilder.Configurations.Add(new UserConfiguration()         );
+            modelBuilder.Configurations.Add(new EmployeeConfiguration()     );
+            modelBuilder.Configurations.Add(new CompanyConfiguration()      );
+            modelBuilder.Configurations.Add(new DepartmentConfiguration()   );
+            modelBuilder.Configurations.Add(new LocationConfiguration()     );
+            modelBuilder.Configurations.Add(new GroupConfiguration()        );
+            modelBuilder.Configurations.Add(new CustomerConfiguration()     );
+            modelBuilder.Configurations.Add(new RequestConfiguration()      );
         }
 
-        class UserConfiguration         : EntityTypeConfiguration<User>
+        class UserConfiguration             : EntityTypeConfiguration<User>
         {
             public UserConfiguration()
             {
@@ -71,7 +76,7 @@ namespace SAS.Model
                 });
             }
         }
-        class EmployeeConfiguration     : EntityTypeConfiguration<Employee>
+        class EmployeeConfiguration         : EntityTypeConfiguration<Employee>
         {
             public EmployeeConfiguration()
             {
@@ -153,15 +158,15 @@ namespace SAS.Model
 
                 Map<CustomerVisitor>(item =>
                 {
-                    item.Requires("TypeID").HasValue(Convert.ToInt32(CustomerType.Visitor));
+                    item.Requires("CustomerTypeID").HasValue(Convert.ToInt32(CustomerType.Visitor));
                 });
                 Map<CustomerContractor>(item =>
                 {
-                    item.Requires("TypeID").HasValue(Convert.ToInt32(CustomerType.Contractor));
+                    item.Requires("CustomerTypeID").HasValue(Convert.ToInt32(CustomerType.Contractor));
                 });
                 Map<CustomerJTI>(item =>
                 {
-                    item.Requires("TypeID").HasValue(Convert.ToInt32(CustomerType.JTI));
+                    item.Requires("CustomerTypeID").HasValue(Convert.ToInt32(CustomerType.JTI));
                 });
             }
         }
@@ -175,6 +180,35 @@ namespace SAS.Model
                 HasRequired(item => item.Department)
                     .WithMany()
                     .HasForeignKey(item => item.DepartmentID);
+            }
+        }
+        class RequestConfiguration          : EntityTypeConfiguration<Request>
+        {
+            public RequestConfiguration()
+            {
+                ToTable("Request", "rqs");
+                Property(item => item.ActiveStatus)
+                    .HasColumnName("ActiveStatusID");
+
+                Map<RequestJTI>(item =>
+                {
+                    item.Requires("RequestTypeID").HasValue(Convert.ToInt32(RequestType.JTI));
+                });
+                Map<RequestContractor>(item =>
+                {
+                    item.Requires("RequestTypeID").HasValue(Convert.ToInt32(RequestType.Contractor));
+                });
+                Map<RequestVisitor>(item =>
+                {
+                    item.Requires("RequestTypeID").HasValue(Convert.ToInt32(RequestType.Visitor));
+                });
+
+                HasRequired(item => item.Creator)
+                    .WithMany()
+                    .HasForeignKey(item => item.CreatorID);
+                HasRequired(item => item.Customer)
+                    .WithMany()
+                    .HasForeignKey(item => item.CustomerID);
             }
         }
     }

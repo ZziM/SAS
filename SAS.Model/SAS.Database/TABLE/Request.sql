@@ -4,7 +4,7 @@
 	[CreatorID] INT NOT NULL,
 	[CustomerID] INT NOT NULL,
 	[Name] NVARCHAR(128) NOT NULL,
-	[TypeID] INT NOT NULL,
+	[RequestTypeID] INT NOT NULL,
 	[AdditionalInformation] NVARCHAR(2048),
 	[BusinessReason] NVARCHAR(2048) NOT NULL,
 	[CreateDate] DATETIME2 NOT NULL DEFAULT(GETDATE()),

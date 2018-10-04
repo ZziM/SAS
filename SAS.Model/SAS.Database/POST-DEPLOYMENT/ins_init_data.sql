@@ -54,9 +54,13 @@ VALUES
 (1, 1, 1),
 (1, 2, 1)
 
-INSERT INTO [rqs].[Customer] ([FirstName], [MiddleName], [LastName], [TypeID], [AdditionalInformation], [ActiveStatusID], [CompanyID], [DepartmentID], [Username])
+INSERT INTO [rqs].[Customer] ([FirstName], [MiddleName], [LastName], [CustomerTypeID], [AdditionalInformation], [ActiveStatusID], [CompanyID], [DepartmentID], [Username])
 VALUES
 ('Denis', 'Sergeevich', 'Makilov', 1, 'AdditionaInfo', 1, 1, 1, 'JTICORP\CSTMAKILOD')
+
+INSERT INTO [rqs].[Request] ([ActiveStatusID], [AdditionalInformation], [BusinessReason], [CreateDate], [CreatorID], [CustomerID], [EndAccessDate], [StartAccessDate], [RequestTypeID], [Name])
+VALUES
+(1, 'Additional information request', 'Business reason of the request', GETDATE(), 1, 1, GETDATE(), GETDATE(), 1, 'RQST1')
 -------------------------------------------------------------------
 
 INSERT INTO [loc].[GroupType] ([ID], [Type])
