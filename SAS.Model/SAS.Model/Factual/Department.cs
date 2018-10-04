@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace SAS.Model.Factual
 {
-    [Table("Department", Schema = "usr")]
     public class Department : DbObject, IDepartment
     {
         public string Name { get; set; }
