@@ -7,16 +7,9 @@ namespace SAS.Model.Factual
     public class Company : DbObject, ICompany
     {
         public string Name { get; set; }
-        IEnumerable<IEmployee> ICompany.Employees
+        IQueryable<IEmployee> ICompany.Employees
         {
-            get => Employees;
-            set
-            {
-                if(value is IEnumerable<Employee> employees)
-                {
-                    Employees = employees.ToList();
-                }
-            }
+            get => Employees.AsQueryable();
         }
 
         #region EF

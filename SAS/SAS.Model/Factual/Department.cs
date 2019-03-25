@@ -11,16 +11,9 @@ namespace SAS.Model.Factual
     public class Department : DbObject, IDepartment
     {
         public string Name { get; set; }
-        IEnumerable<IEmployee> IDepartment.Employees
+        IQueryable<IEmployee> IDepartment.Employees
         {
-            get => Employees;
-            set
-            {
-                if(value is IEnumerable<Employee> employees)
-                {
-                    Employees = employees.ToList();
-                }
-            }
+            get => Employees.AsQueryable();
         }
 
         #region EF

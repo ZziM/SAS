@@ -8,14 +8,9 @@ namespace SAS.Model.Factual
     {
         public string Name { get; set; }
         public GroupType Type { get; set; }
-        IEnumerable<ILocation> IGroup.Locations
+        IQueryable<ILocation> IGroup.Locations
         {
-            get => Locations;
-            set
-            {
-                if (value is IEnumerable<Location> locations)
-                    Locations = locations.ToList();
-            }
+            get => Locations.AsQueryable();
         }
 
         #region EF

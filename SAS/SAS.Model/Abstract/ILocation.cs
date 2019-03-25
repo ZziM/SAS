@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace SAS.Model.Abstract
 {
     public interface ILocation : IDbObject
     {
         string Name { get; set; }
-        IEnumerable<IEmployee> LocationManagers { get; set; }
-        IEnumerable<IGroup> Areas { get; set; }
+        IQueryable<IEmployee> LocationManagers { get; }
+        IQueryable<IGroup> Areas { get; }
     }
 }

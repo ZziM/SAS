@@ -32,7 +32,7 @@ namespace SAS.Model
         #endregion
 
         #region ctor
-        public SecurityAreaSystemContext() : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=SAS.DB;Integrated Security=True")
+        public SecurityAreaSystemContext() : base(@"Data Source=DESKTOP-3DQTH1F\SQLEXPRESS;Initial Catalog=SAS;Integrated Security=True")
         {
 
         }

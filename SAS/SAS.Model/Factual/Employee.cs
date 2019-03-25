@@ -13,6 +13,7 @@ namespace SAS.Model.Factual
                 if(value is Department department)
                 {
                     Department = department;
+                    DepartmentID = department.ID;
                 }
             }
         }
@@ -24,6 +25,7 @@ namespace SAS.Model.Factual
                 if(value is Company company)
                 {
                     Company = company;
+                    CompanyID = company.ID;
                 }
             }
         }

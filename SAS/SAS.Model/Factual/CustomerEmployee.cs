@@ -12,7 +12,10 @@ namespace SAS.Model.Factual
             set
             {
                 if (value is Department department)
+                {
                     Department = department;
+                    DepartmentID = department.ID;
+                }
             }
         }
         ICompany ICustomerEmployee.Company
@@ -21,7 +24,10 @@ namespace SAS.Model.Factual
             set
             {
                 if (value is Company company)
+                {
                     Company = company;
+                    CompanyID = company.ID;
+                }
             }
         }
 

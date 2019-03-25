@@ -1,9 +1,6 @@
 ﻿using SAS.Model.Abstract;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAS.Model.Factual
 {
@@ -11,24 +8,14 @@ namespace SAS.Model.Factual
     {
         public string Name { get; set; }
 
-        IEnumerable<IEmployee> ILocation.LocationManagers
+        IQueryable<IEmployee> ILocation.LocationManagers
         {
-            get => LocationManagers;
-            set
-            {
-                if (value is IEnumerable<Employee> locationManagers)
-                    LocationManagers = locationManagers.ToList();
-            }
+            get => LocationManagers.AsQueryable();
         }
 
-        IEnumerable<IGroup> ILocation.Areas
+        IQueryable<IGroup> ILocation.Areas
         {
-            get => Areas;
-            set
-            {
-                if (value is IEnumerable<Group> areas)
-                    Areas = areas.ToList();
-            }
+            get => Areas.AsQueryable();
         }
 
         #region EF

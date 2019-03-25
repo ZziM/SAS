@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace SAS.Model.Abstract
 {
     public interface ICompany : IDbObject
     {
         string Name { get; set; }
-        IEnumerable<IEmployee> Employees { get; set; }
+        IQueryable<IEmployee> Employees { get; }
     }
 }

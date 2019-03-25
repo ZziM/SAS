@@ -15,7 +15,10 @@ namespace SAS.Model.Factual
             set
             {
                 if (value is Employee creator)
+                {
                     Creator = creator;
+                    CreatorID = creator.ID;
+                }
             }
         }
         ICustomer IRequest.Customer
@@ -24,7 +27,10 @@ namespace SAS.Model.Factual
             set
             {
                 if (value is Customer customer)
+                {
                     Customer = customer;
+                    CustomerID = customer.ID;
+                }
             }
         }
         public string Name { get; set; }
