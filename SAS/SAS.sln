@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.Web", "SAS.Web\SAS.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.Sandbox", "SAS.Sandbox\SAS.Sandbox.csproj", "{7CCBC9CA-6F37-4329-A756-414858DA8280}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.WebTests", "SAS.WebTests\SAS.WebTests.csproj", "{2F761C0F-12DC-4798-9B2D-43539DC48C64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{7CCBC9CA-6F37-4329-A756-414858DA8280}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CCBC9CA-6F37-4329-A756-414858DA8280}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CCBC9CA-6F37-4329-A756-414858DA8280}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F761C0F-12DC-4798-9B2D-43539DC48C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F761C0F-12DC-4798-9B2D-43539DC48C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F761C0F-12DC-4798-9B2D-43539DC48C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F761C0F-12DC-4798-9B2D-43539DC48C64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

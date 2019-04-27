@@ -1,6 +1,7 @@
 ﻿using SAS.Model.Factual;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
@@ -12,23 +13,25 @@ namespace SAS.Model
     public class SecurityAreaSystemContext : DbContext
     {
         #region DbSets
-        public DbSet<User> Users                                { get; set; }
-        public DbSet<Employee> Employees                        { get; set; }
-        public DbSet<Visitor> Visitors                          { get; set; }
-        public DbSet<EmployeeJTI> EmployeesJTI                  { get; set; }
-        public DbSet<Contractor> Contractors                    { get; set; }
-        public DbSet<Department> Departments                    { get; set; }
-        public DbSet<Company> Companies                         { get; set; }
-        public DbSet<Location> Locations                        { get; set; }
-        public DbSet<Group> Groups                              { get; set; }
-        public DbSet<Customer> Customers                        { get; set; }
-        public DbSet<CustomerEmployee> CustomerEmployees        { get; set; }
-        public DbSet<CustomerContractor> CustomerContractors    { get; set; }
-        public DbSet<CustomerJTI> CustomersJTI                  { get; set; }
-        public DbSet<Request> Requests                          { get; set; }
-        public DbSet<RequestJTI> GetRequestsJTI                 { get; set; }
-        public DbSet<RequestContractor> RequestContractors      { get; set; }
-        public DbSet<RequestVisitor> RequestVisitors            { get; set; }
+        public DbSet<User>                  Users                   { get; set; }
+        public DbSet<Employee>              Employees               { get; set; }
+        public DbSet<Visitor>               Visitors                { get; set; }
+        public DbSet<EmployeeJTI>           EmployeesJTI            { get; set; }
+        public DbSet<Contractor>            Contractors             { get; set; }
+        public DbSet<Department>            Departments             { get; set; }
+        public DbSet<Company>               Companies               { get; set; }
+        public DbSet<AccessPoint>           AccessPoints            { get; set; }
+        public DbSet<Group>                 Groups                  { get; set; }
+        public DbSet<Customer>              Customers               { get; set; }
+        public DbSet<CustomerEmployee>      CustomerEmployees       { get; set; }
+        public DbSet<CustomerContractor>    CustomerContractors     { get; set; }
+        public DbSet<CustomerJTI>           CustomersJTI            { get; set; }
+        public DbSet<Request>               Requests                { get; set; }
+        public DbSet<RequestJTI>            GetRequestsJTI          { get; set; }
+        public DbSet<RequestContractor>     RequestContractors      { get; set; }
+        public DbSet<RequestVisitor>        RequestVisitors         { get; set; }
+        public DbSet<RequestedAccessPoint>  RequestedAccessPoints   { get; set; }
+        public DbSet<RequestedGroup>        RequestedGroups         { get; set; }
         #endregion
 
         #region ctor
@@ -42,14 +45,16 @@ namespace SAS.Model
         {
             Database.SetInitializer<SecurityAreaSystemContext>(null);
 
-            modelBuilder.Configurations.Add(new UserConfiguration()         );
-            modelBuilder.Configurations.Add(new EmployeeConfiguration()     );
-            modelBuilder.Configurations.Add(new CompanyConfiguration()      );
-            modelBuilder.Configurations.Add(new DepartmentConfiguration()   );
-            modelBuilder.Configurations.Add(new LocationConfiguration()     );
-            modelBuilder.Configurations.Add(new GroupConfiguration()        );
-            modelBuilder.Configurations.Add(new CustomerConfiguration()     );
-            modelBuilder.Configurations.Add(new RequestConfiguration()      );
+            modelBuilder.Configurations.Add(new UserConfiguration()                 );
+            modelBuilder.Configurations.Add(new EmployeeConfiguration()             );
+            modelBuilder.Configurations.Add(new CompanyConfiguration()              );
+            modelBuilder.Configurations.Add(new DepartmentConfiguration()           );
+            modelBuilder.Configurations.Add(new LocationConfiguration()             );
+            modelBuilder.Configurations.Add(new GroupConfiguration()                );
+            modelBuilder.Configurations.Add(new CustomerConfiguration()             );
+            modelBuilder.Configurations.Add(new RequestConfiguration()              );
+            modelBuilder.Configurations.Add(new RequestedAccessPointConfiguration() );
+            modelBuilder.Configurations.Add(new RequestedGroupConfiguration()       );
         }
 
         class UserConfiguration             : EntityTypeConfiguration<User>
@@ -108,21 +113,21 @@ namespace SAS.Model
                 .HasColumnName("ActiveStatusID");
             }
         }
-        class LocationConfiguration         : EntityTypeConfiguration<Location>
+        class LocationConfiguration         : EntityTypeConfiguration<AccessPoint>
         {
             public LocationConfiguration()
             {
-                ToTable("Location", "loc")
+                ToTable("AccessPoint", "loc")
                 .Property(item => item.ActiveStatus)
                 .HasColumnName("ActiveStatusID");
 
-                HasMany(item => item.LocationManagers)
+                HasMany(item => item.AccessPointManagers)
                 .WithMany()
                 .Map(llm =>
                 {
-                    llm.MapLeftKey("ID");
-                    llm.MapRightKey("LocationID");
-                    llm.ToTable("LocationManager", "loc");
+                    llm.MapLeftKey("UserID");
+                    llm.MapRightKey("AccessPointID");
+                    llm.ToTable("AccessPointManager", "loc");
                 });
             }
         }
@@ -138,13 +143,13 @@ namespace SAS.Model
                 Property(item => item.Type)
                 .HasColumnName("GroupTypeID");
 
-                HasMany(item => item.Locations)
-                .WithMany(item => item.Areas)
+                HasMany(item => item.AccessPoints)
+                .WithMany(item => item.Groups)
                 .Map(la =>
                 {
                     la.MapLeftKey("GroupID");
-                    la.MapRightKey("LocationID");
-                    la.ToTable("GroupLocations", "loc");
+                    la.MapRightKey("AccessPointID");
+                    la.ToTable("GroupToAccessPoint", "loc");
                 });
             }
         }
@@ -209,6 +214,56 @@ namespace SAS.Model
                 HasRequired(item => item.Customer)
                     .WithMany()
                     .HasForeignKey(item => item.CustomerID);
+
+                HasMany(_ => _.Groups)
+                    .WithRequired(_ => _.Request)
+                    .HasForeignKey(_ => _.RequestID);
+            }
+        }
+
+        class RequestedGroupConfiguration : EntityTypeConfiguration<RequestedGroup>
+        {
+            public RequestedGroupConfiguration()
+            {
+                ToTable("RequestedGroup", "rqs")
+                    .HasKey(_ => _.ID);
+                Property(_ => _.ID)
+                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+                Property(_ => _.GroupStatus)
+                    .HasColumnName("GroupStatusID");
+
+                HasOptional(_ => _.Group)
+                    .WithMany()
+                    .HasForeignKey(_ => _.GroupID);
+
+                HasRequired(_ => _.Request)
+                    .WithMany()
+                    .HasForeignKey(_ => _.RequestID);
+
+                Property(_ => _.ActiveStatus)
+                        .HasColumnName("ActiveStatusID");
+            }
+        }
+
+        class RequestedAccessPointConfiguration : EntityTypeConfiguration<RequestedAccessPoint>
+        {
+            public RequestedAccessPointConfiguration()
+            {
+                ToTable("RequestedAccessPoint", "rqs")
+                    .HasKey(_ => _.ID);
+                Property(_ => _.ID)
+                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+                HasRequired(_ => _.Group)
+                    .WithMany(_ => _.AccessPoints)
+                    .HasForeignKey(_ => _.RequestedGroupID);
+
+                Property(_ => _.AccessPointStatus)
+                    .HasColumnName("AccessPointStatusID");
+
+                Property(_ => _.ActiveStatus)
+                    .HasColumnName("ActiveStatusID");
             }
         }
     }

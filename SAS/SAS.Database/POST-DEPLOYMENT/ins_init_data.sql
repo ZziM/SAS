@@ -34,22 +34,22 @@ INSERT INTO [usr].[User] ([FirstName], [MiddleName], [LastName], [SAPNumber], [T
 VALUES
 ('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1, 'Makolov.Denis@gmail.com')
 
-INSERT INTO [loc].[Location] ([Name], [ActiveStatusID])
+INSERT INTO [loc].[AccessPoint] ([Name], [ActiveStatusID])
 VALUES
-('Проходная', 1),
-('Проходная-2', 1)
+(N'Проходная', 1),
+(N'Проходная-2', 1)
 
-INSERT INTO [loc].[LocationManager] ([LocationID], [UserID], [ActiveStatusID])
+INSERT INTO [loc].[AccessPointManager] ([AccessPointID], [UserID], [ActiveStatusID])
 VALUES
 (1, 1, 1),
-(1, 1, 1)
+(2, 1, 1)
 
 
 INSERT INTO [loc].[Group] ([Name], [GroupTypeID], [ActiveStatusID])
 VALUES
 ('IT', 0, 1)
 
-INSERT INTO [loc].[GroupLocations] ([GroupID], [LocationID], [ActiveStatusID])
+INSERT INTO [loc].[GroupToAccessPoint] ([GroupID], [AccessPointID], [ActiveStatusID])
 VALUES
 (1, 1, 1),
 (1, 2, 1)
@@ -80,3 +80,21 @@ VALUES
 (0, 'JTI'),
 (1, 'Contractor'),
 (2, 'Visitor')
+
+INSERT INTO [rqs].[RequestAccessPointStatus] (ID, [Status])
+VALUES
+(0, 'On Approval'),
+(1, 'Approved'),
+(2, 'Rejected')
+
+INSERT INTO [rqs].[RequestGroupStatus] ([ID], [Status])
+VALUES
+(0, 'On Approval')
+
+INSERT INTO rqs.RequestedGroup (RequestID, GroupID, GroupName, GroupStatusID, ActiveStatusID)
+VALUES
+(1, 1, N'IT', 0, 1)
+
+INSERT INTO rqs.RequestedAccessPoint (RequestedGroupID, AccessPointID, AccessPointName, AccessPointStatusID, ActiveStatusID)
+VALUES
+(1, 1, N'Проходная', 0, 1)

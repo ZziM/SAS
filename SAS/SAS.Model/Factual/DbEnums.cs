@@ -33,4 +33,16 @@
         Contractor,
         Visitor
     }
+
+    public enum RequestGroupStatus
+    {
+        OnApproval
+    }
+
+    public enum RequestAccessPointStatus
+    {
+        OnApproval,
+        Approved,
+        Rejected
+    }
 }

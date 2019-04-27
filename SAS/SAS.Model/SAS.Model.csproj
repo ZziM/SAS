@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAccessPoint.cs" />
     <Compile Include="Abstract\ICustomer.cs" />
     <Compile Include="Abstract\ICustomerContractor.cs" />
     <Compile Include="Abstract\ICustomerEmployee.cs" />
@@ -59,13 +60,15 @@
     <Compile Include="Abstract\IDepartment.cs" />
     <Compile Include="Abstract\IEmployee.cs" />
     <Compile Include="Abstract\IEmployeeJTI.cs" />
-    <Compile Include="Abstract\ILocation.cs" />
     <Compile Include="Abstract\IRequest.cs" />
     <Compile Include="Abstract\IRequestContractor.cs" />
+    <Compile Include="Abstract\IRequestedAccessPoint.cs" />
+    <Compile Include="Abstract\IRequestedGroup.cs" />
     <Compile Include="Abstract\IRequestJTI.cs" />
     <Compile Include="Abstract\IRequestVisitor.cs" />
     <Compile Include="Abstract\IUser.cs" />
     <Compile Include="Abstract\IVisitor.cs" />
+    <Compile Include="Factual\AccessPoint.cs" />
     <Compile Include="Factual\Customer.cs" />
     <Compile Include="Factual\CustomerContractor.cs" />
     <Compile Include="Factual\CustomerEmployee.cs" />
@@ -79,9 +82,10 @@
     <Compile Include="Factual\Department.cs" />
     <Compile Include="Factual\Employee.cs" />
     <Compile Include="Factual\EmployeeJTI.cs" />
-    <Compile Include="Factual\Location.cs" />
     <Compile Include="Factual\Request.cs" />
     <Compile Include="Factual\RequestContractor.cs" />
+    <Compile Include="Factual\RequestedAccessPoint.cs" />
+    <Compile Include="Factual\RequestedGroup.cs" />
     <Compile Include="Factual\RequestJTI.cs" />
     <Compile Include="Factual\RequestVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

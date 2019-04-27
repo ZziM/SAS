@@ -16,5 +16,6 @@ namespace SAS.Model.Abstract
         DateTime CreateDate { get; set; }
         DateTime StartAccessDate { get; set; }
         DateTime? EndAccessDate { get; set; }
+        IQueryable<IRequestedGroup> Groups { get; }
     }
 }

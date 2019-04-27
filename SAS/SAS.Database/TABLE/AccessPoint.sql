@@ -1,4 +1,4 @@
-﻿CREATE TABLE [loc].[Location](
+﻿CREATE TABLE [loc].[AccessPoint](
 	[ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[Name] [nvarchar](64) NOT NULL,
 	[ActiveStatusID] [int] NOT NULL,

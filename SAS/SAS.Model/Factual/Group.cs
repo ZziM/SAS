@@ -8,13 +8,13 @@ namespace SAS.Model.Factual
     {
         public string Name { get; set; }
         public GroupType Type { get; set; }
-        IQueryable<ILocation> IGroup.Locations
+        IQueryable<IAccessPoint> IGroup.AccessPoints
         {
-            get => Locations.AsQueryable();
+            get => AccessPoints.AsQueryable();
         }
 
         #region EF
-        public virtual ICollection<Location> Locations { get; set; }
+        public virtual ICollection<AccessPoint> AccessPoints { get; set; }
         #endregion
     }
 }

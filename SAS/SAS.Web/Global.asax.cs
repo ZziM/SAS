@@ -21,9 +21,9 @@ namespace SAS_Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
-            ModelBinders.Binders.DefaultBinder = new DevExpress.Web.Mvc.DevExpressEditorsBinder();
+            //ModelBinders.Binders.DefaultBinder = new DevExpress.Web.Mvc.DevExpressEditorsBinder();
 
-            DevExpress.Web.ASPxWebControl.CallbackError += Application_Error;
+            //DevExpress.Web.ASPxWebControl.CallbackError += Application_Error;
         }
 
         protected void Application_Error(object sender, EventArgs e) 

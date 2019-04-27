@@ -16,7 +16,7 @@ namespace SAS.Sandbox
                 var users = db.Users.ToArray();
                 var departments = db.Departments.ToArray();
                 var companies = db.Companies.ToArray();
-                var locations = db.Locations.ToArray();
+                var accessPoints = db.AccessPoints.ToArray();
                 var groups = db.Groups.ToArray();
                 var customers = db.Customers.ToArray();
                 var requests = db.Requests.ToArray();

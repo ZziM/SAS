@@ -1,4 +1,4 @@
-﻿CREATE TABLE [def].[ActiveStatus]
+﻿CREATE TABLE [rqs].[RequestAccessPointStatus]
 (
 	[ID] INT NOT NULL PRIMARY KEY,
 	[Status] NVARCHAR(64) NOT NULL,

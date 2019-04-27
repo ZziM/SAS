@@ -33,6 +33,9 @@ namespace SAS.Model.Factual
                 }
             }
         }
+
+        IQueryable<IRequestedGroup> IRequest.Groups { get => Groups.AsQueryable(); }
+
         public string Name { get; set; }
         public string AdditionalInformation { get; set; }
         public string BusinessReason { get; set; }
@@ -45,6 +48,7 @@ namespace SAS.Model.Factual
         public virtual Customer Customer {get;set;}
         public int CreatorID { get; set; }
         public virtual Employee Creator { get; set; }
+        public virtual ICollection<RequestedGroup> Groups { get; set; }
         #endregion
     }
 }

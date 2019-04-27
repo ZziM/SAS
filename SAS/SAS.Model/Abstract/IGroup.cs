@@ -6,7 +6,7 @@ namespace SAS.Model.Abstract
     public interface IGroup : IDbObject
     {
         string Name { get; set; }
-        IQueryable<ILocation> Locations { get; }
+        IQueryable<IAccessPoint> AccessPoints { get; }
         GroupType Type { get; set; }
     }
 }
