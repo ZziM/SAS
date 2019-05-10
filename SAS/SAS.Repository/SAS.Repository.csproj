@@ -51,8 +51,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IRepository.cs" />
     <Compile Include="Repository\Abstract\BaseRepository.cs" />
+    <Compile Include="Repository\Factual\AccessPointRepository.cs" />
+    <Compile Include="Repository\Factual\ContractorRepository.cs" />
     <Compile Include="Repository\Factual\EmployeeJTIRepository.cs" />
+    <Compile Include="Repository\Factual\EmployeeRepository.cs" />
+    <Compile Include="Repository\Factual\GroupRepository.cs" />
+    <Compile Include="Repository\Factual\RequestedAccessPointRepository.cs" />
+    <Compile Include="Repository\Factual\RequestedGroupRepository.cs" />
     <Compile Include="Repository\Factual\RequestRepository.cs" />
+    <Compile Include="Repository\Factual\RequestStateRepository.cs" />
     <Compile Include="UnitOfWork\Abstract\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\Factual\EFUnitOfWork.cs" />
   </ItemGroup>

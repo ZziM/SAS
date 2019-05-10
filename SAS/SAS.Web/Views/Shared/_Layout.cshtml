@@ -22,23 +22,23 @@
             new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList },
             new StyleSheet { ExtensionSuite = ExtensionSuite.Dashboard }
         )
-        @Html.DevExpress().GetScripts(
-            new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
-            new Script { ExtensionSuite = ExtensionSuite.CardView },
-            new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
-            new Script { ExtensionSuite = ExtensionSuite.SpellChecker },
-            new Script { ExtensionSuite = ExtensionSuite.HtmlEditor },
-            new Script { ExtensionSuite = ExtensionSuite.RichEdit },
-            new Script { ExtensionSuite = ExtensionSuite.Editors },
-            new Script { ExtensionSuite = ExtensionSuite.VerticalGrid },
-            new Script { ExtensionSuite = ExtensionSuite.Spreadsheet },
-            new Script { ExtensionSuite = ExtensionSuite.Scheduler },
-            new Script { ExtensionSuite = ExtensionSuite.Chart },
-            new Script { ExtensionSuite = ExtensionSuite.Report },
-            new Script { ExtensionSuite = ExtensionSuite.GridView },
-            new Script { ExtensionSuite = ExtensionSuite.TreeList },
-            new Script { ExtensionSuite = ExtensionSuite.Dashboard }
-        )
+    @Html.DevExpress().GetScripts(
+        new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new Script { ExtensionSuite = ExtensionSuite.CardView },
+        new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
+        new Script { ExtensionSuite = ExtensionSuite.SpellChecker },
+        new Script { ExtensionSuite = ExtensionSuite.HtmlEditor },
+        new Script { ExtensionSuite = ExtensionSuite.RichEdit },
+        new Script { ExtensionSuite = ExtensionSuite.Editors },
+        new Script { ExtensionSuite = ExtensionSuite.VerticalGrid },
+        new Script { ExtensionSuite = ExtensionSuite.Spreadsheet },
+        new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+        new Script { ExtensionSuite = ExtensionSuite.Chart },
+        new Script { ExtensionSuite = ExtensionSuite.Report },
+        new Script { ExtensionSuite = ExtensionSuite.GridView },
+        new Script { ExtensionSuite = ExtensionSuite.TreeList },
+        new Script { ExtensionSuite = ExtensionSuite.Dashboard }
+    )
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,35 +46,30 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
 </head>
 
 <body>
+    @RenderSection("JS", false)
     @Html.DevExpress().Menu(
      settings =>
      {
          settings.Name = "mFeatures";
+         settings.ShowPopOutImages = DefaultBoolean.True;
+         settings.RootItemSubMenuOffset.LastItemX = 8;
          settings.AllowSelectItem = true;
-         settings.EnableHotTrack = true;
-         settings.EnableAnimation = true;
-         settings.AppearAfter = 1;
-         settings.DisappearAfter = 1;
 
-         settings.Init = (s, e) => {
-             MVCxMenu menu = (MVCxMenu)s;
-             menu.AutoSeparators = AutoSeparatorMode.All;
-             menu.ShowPopOutImages = DefaultBoolean.True;
-         };
+         settings.SettingsAdaptivity.Enabled = true;
+         settings.SettingsAdaptivity.EnableAutoHideRootItems = true;
+         settings.SettingsAdaptivity.EnableCollapseToSideMenu = true;
+         settings.SettingsAdaptivity.CollapseToSideMenuAtWindowInnerWidth = 300;
 
-         settings.Items.Add(item => {
-             item.Text = "Home";
-             item.Items.Add(subItem => {
-                 subItem.Text = "News";
-                 subItem.Items.Add("For Developers");
-                 subItem.Items.Add("Website News");
-             });
-             item.Items.Add("Our Mission");
-             item.Items.Add("Our Customers");
+         settings.Width = Unit.Percentage(100);
+         settings.EnableSubMenuFullWidth = true;
+
+         settings.Items.Add(itemStg =>
+         {
+             itemStg.Text = "Home";
+             itemStg.NavigateUrl = Url.RouteUrl("Default", new { controller = "Home", action = "Index" });
          });
          settings.Items.Add(item => {
              item.Text = "Reuqest";
@@ -82,25 +77,39 @@
              {
                  subItem.Text = "Employee";
                  subItem.Items.Add("New");
-                 subItem.Items.Add("Worked");
+                 subItem.Items.Add(itemStg =>
+                 {
+                     itemStg.Text = "Worked";
+                     itemStg.NavigateUrl = Url.RouteUrl("Request", new { controller = "WorkedEmployee", action = "Index"});
+                 });
              });
              item.Items.Add(subItem =>
              {
                  subItem.Text = "Contractor";
                  subItem.Items.Add("New");
-                 subItem.Items.Add("Worked");
+                 subItem.Items.Add(itemStg =>
+                 {
+                     itemStg.Text = "Worked";
+                     itemStg.NavigateUrl = Url.RouteUrl("Request", new { controller = "WorkedContractor", action = "Index" });
+                 });
              });
              item.Items.Add("Visitor");
          });
          settings.Items.Add(item => {
              item.Text = "On Approval";
+             item.NavigateUrl = Url.RouteUrl("Default", new { controller = "OnApproval", action = "Index" });
          });
+
+         settings.Items.Add("Assignment to Me");
+         settings.Items.Add("Archive");
      }).GetHtml()
     @RenderBody()
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 

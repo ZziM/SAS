@@ -1,4 +1,6 @@
-﻿namespace SAS.Model.Factual
+﻿using System;
+
+namespace SAS.Model.Factual
 {
     public enum ActiveStatus
     {
@@ -44,5 +46,18 @@
         OnApproval,
         Approved,
         Rejected
+    }
+    [Flags]
+    public enum RequestAccess
+    {
+        None = 0,
+        LocationManager = 1 
+    }
+
+    public enum EnumRequestState
+    {
+        None = 0,
+        OnLocationManager = 1,
+        OnSecurityImplementation = 2
     }
 }

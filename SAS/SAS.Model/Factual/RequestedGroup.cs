@@ -25,25 +25,12 @@ namespace SAS.Model.Factual
             }
         }
 
-        IGroup IRequestedGroup.Group
+        IQueryable<IRequestedAccessPoint> IRequestedGroup.AccessPoints
         {
             get
             {
-                return Group;
+                return AccessPoints.AsQueryable();
             }
-            set
-            {
-                if (value is Group group)
-                {
-                    Group = group;
-                    GroupID = group.ID;
-                }
-            }
-        }
-
-        IQueryable<IRequestedAccessPoint> IRequestedGroup.AccessPoints
-        {
-            get => AccessPoints.AsQueryable();
         }
 
         public ActiveStatus ActiveStatus { get; set; }
@@ -51,12 +38,15 @@ namespace SAS.Model.Factual
         public DateTime DLM { get; set; }
 
         #region EF
-        public int? GroupID { get; set; }
-        public virtual Group Group { get; set; }
         public int RequestID { get; set; }
         public virtual Request Request { get; set; }
         public virtual ICollection<RequestedAccessPoint> AccessPoints { get; set; }
         public RequestGroupStatus GroupStatus { get; set; }
         #endregion
+
+        public RequestedGroup()
+        {
+            AccessPoints = new HashSet<RequestedAccessPoint>();
+        }
     }
 }

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using SASModel = SAS.Model.Injection;
+using SASWeb = SAS.Web.Helpers.Injection;
 
 namespace SAS_Web
 {
@@ -29,8 +31,9 @@ namespace SAS_Web
 
             DevExpress.Web.ASPxWebControl.CallbackError += Application_Error;
 
-            NinjectModule registrations = new NinjectMapper();
-            var kernel = new StandardKernel(registrations);
+            NinjectModule sasModelregistrations = new SASModel.NinjectMapper();
+            NinjectModule webRegistrations = new SASWeb.NinjectMapper();
+            var kernel = new StandardKernel(webRegistrations, sasModelregistrations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
 

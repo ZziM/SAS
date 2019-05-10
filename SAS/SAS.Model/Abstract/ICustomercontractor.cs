@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SAS.Model.Abstract
 {
-    interface ICustomerContractor : ICustomerEmployee
+    public interface ICustomerContractor : ICustomerEmployee
     {
     }
 }

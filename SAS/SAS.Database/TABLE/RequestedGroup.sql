@@ -2,7 +2,6 @@
 (
 	[ID] INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	[RequestID] INT NOT NULL,
-	[GroupID] INT,
 	[GroupName] NVARCHAR(64),
 	[GroupStatusID] INT NOT NULL,
 	[ActiveStatusID] INT NOT NULL,

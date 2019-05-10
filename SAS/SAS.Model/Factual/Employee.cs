@@ -5,6 +5,7 @@ namespace SAS.Model.Factual
 {
     public abstract class Employee : User, IEmployee
     {
+        public string Username { get; set; }
         IDepartment IEmployee.Department
         {
             get => Department;

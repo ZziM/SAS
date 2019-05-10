@@ -2,7 +2,6 @@
 (
 	[ID] INT IDENTITY (1, 1) PRIMARY KEY NOT NULL,
 	[RequestedGroupID] INT NOT NULL,
-	[AccessPointID] INT NOT NULL,
 	[AccessPointName] NVARCHAR(64),
 	[AccessPointStatusID] INT NOT NULL,
 	[ActiveStatusID] INT NOT NULL,

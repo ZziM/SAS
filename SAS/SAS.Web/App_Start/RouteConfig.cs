@@ -12,9 +12,9 @@ namespace SAS_Web {
             routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
 
             routes.MapRoute(
-                name: "RequestWorkedEmployee", // Route name
+                name: "Request", // Route name
                 url: "Request/{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "WorkedEmployee", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                defaults: new { controller = "WorkedContractor", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
             routes.MapRoute(

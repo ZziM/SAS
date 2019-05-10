@@ -109,14 +109,14 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    <Reference Include="Ninject.Web.Common, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.1\lib\net45\Ninject.Web.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.1\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
@@ -217,6 +217,9 @@
     <Reference Include="DevExpress.TreeMap.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Map.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
       <Private>True</Private>
@@ -253,6 +256,8 @@
     <Content Include="libman.json" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Request\baseRequest.js" />
+    <Content Include="Scripts\Request\WorkedEmployee\requestWorkedEmployee.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
@@ -270,6 +275,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Request\NewEmployee\Index.cshtml" />
     <Content Include="Views\Request\WorkedEmployee\Index.cshtml" />
+    <Content Include="Views\Request\WorkedEmployee\PartialComboBoxCustomer.cshtml" />
+    <Content Include="Views\Shared\Request\PartialMemoAdditionallInformation.cshtml" />
+    <Content Include="Views\Shared\Request\PartialMemoBusinessReason.cshtml" />
+    <Content Include="Views\Shared\Request\PartialGridViewRequestGroup.cshtml" />
+    <Content Include="Views\Shared\Request\PartialTextBoxCreator.cshtml" />
+    <Content Include="Views\Shared\Request\PartialButtonAddGroup.cshtml" />
+    <Content Include="Views\Shared\Request\PartialSelectionGroupSection.cshtml" />
+    <Content Include="Views\Request\WorkedContractor\Index.cshtml" />
+    <Content Include="Views\Shared\Request\PartialDateTimeStartDate.cshtml" />
+    <Content Include="Views\Shared\Request\PartialDateTimeEndDate.cshtml" />
+    <Content Include="Views\Shared\Request\PartialGridViewRequestGroupDetail.cshtml" />
+    <Content Include="Views\OnApproval\Index.cshtml" />
+    <Content Include="Views\OnApproval\PartialGridViewAssignmentToMe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -280,26 +298,55 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\Ninject.Web.Common.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BL\Abastract\Model Builder\BaseModelBuilder.cs" />
+    <Compile Include="BL\Abastract\Request\ApprovalProcess\IApproveCommand.cs" />
+    <Compile Include="BL\Abastract\Request\IRequestManager.cs" />
+    <Compile Include="BL\Abastract\Request\RejectProcess\IRejectCommand.cs" />
+    <Compile Include="BL\Factual\Model Builder\CustomerJTIBuilder.cs" />
+    <Compile Include="BL\Factual\Model Builder\RequestedAccessPointBuilder.cs" />
+    <Compile Include="BL\Factual\Model Builder\RequestedGroupBuilder.cs" />
+    <Compile Include="BL\Factual\Model Builder\RequestJTIBuilder.cs" />
+    <Compile Include="BL\Factual\Request\RequestManager.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OnApprovalController.cs" />
     <Compile Include="Controllers\Request\BaseRequestController.cs" />
     <Compile Include="Controllers\Request\NewEmployeeController.cs" />
+    <Compile Include="Controllers\Request\WorkedContractorController.cs" />
     <Compile Include="Controllers\Request\WorkedEmployeeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Injection\NinjectMapper.cs" />
+    <Compile Include="Models\BaseObjectViewModel.cs" />
+    <Compile Include="Models\BusinessObjectViewModel.cs" />
+    <Compile Include="Models\ComboBoxEmployeeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PageInfo.cs" />
+    <Compile Include="Models\BusinessObjectCollectionViewModel.cs" />
+    <Compile Include="Models\RequestAccessPointViewModel.cs" />
+    <Compile Include="Models\Request\RequestGroupViewModel.cs" />
+    <Compile Include="Models\Request\RequestViewModel.cs" />
+    <Compile Include="Models\Request\RequestWorkedContractorViewModel.cs" />
+    <Compile Include="Models\Request\RequestWorkedEmployeeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RequestJTI\" />
+    <Folder Include="BL\Factual\Request\ApprovalProcess\" />
+    <Folder Include="BL\Factual\Request\RejectProcess\" />
+    <Folder Include="Helpers\Request\" />
+    <Folder Include="Scripts\Partial\Request\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SAS.Model\SAS.Model.csproj">
+      <Project>{35DACE88-4679-49ED-A818-F42E1C12C955}</Project>
+      <Name>SAS.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SAS.Repository\SAS.Repository.csproj">
       <Project>{16654cfc-9202-4c2b-abbf-75439912d8b7}</Project>
       <Name>SAS.Repository</Name>

@@ -4,12 +4,107 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section JS{
+}
+
+<script>
+
+    var RequestedItemsID;
+
+    function SelectionChanged(s, e) {
+        gvGroup.GetSelectedFieldValues('ID', OnGetSelectedFieldValues);
+    }
+
+    function OnGetSelectedFieldValues(values) {
+        RequestedItemsID = values;
+    }
+
+    function btnCreateRequestOnClick(s, e) {
+        var request = {
+            Creator: textBoxCreator.GetValue(),
+            CustomerID: comboBoxCustomer.GetValue(),
+            RequestedItemsID: RequestedItemsID,
+            AdditionalInformation: memoAdditionallInformation.GetValue(),
+            BusinessReason: memoBusinessReason.GetValue(),
+            StartAccessDate: dateTimeStartAccessDate.GetValue().toISOString(),    
+            EndAccessDate: dateTimeEndAccessDate.GetValue().toISOString()
+        }
+
+
+        $.ajax({
+            url: '@Url.Action("CreateRequest", "WorkedEmployee", "RequestWorkedEmployee")',
+            method: 'POST',
+            data: {model : request}
+        })
+    }
+</script>
+
+<br />
 <div class="container">
-     <div class="row">
-         <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Request | Worked Employee
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <br />
+                                @Html.Action("RenderTextBoxCreator")
+                            </div>
+                            <div class="col-md-6">
+                                <br />
+                                @Html.Action("RenderPartialComboBoxCustomer")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <br />
+                            <div class="col-md-6">
+                                @Html.Partial("~/Views/Shared/Request/PartialDateTimeStartDate.cshtml")
+                            </div>
+                            <br />
+                            <div class="col-md-6">
+                                @Html.Partial("~/Views/Shared/Request/PartialDateTimeEndDate.cshtml")
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.Action("RenderGridViewGroup")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.Partial("~/Views/Shared/Request/PartialMemoAdditionallInformation.cshtml")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.Partial("~/Views/Shared/Request/PartialMemoBusinessReason.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                    <br />
 
-         </div>
-     </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.DevExpress().Button(settings =>
+                                {
+                                    settings.Name = "btnCreateRequest";
+                                    settings.Width = Unit.Percentage(100);
+                                    settings.Text = "Order";
+                                    settings.ClientSideEvents.Click = "btnCreateRequestOnClick";
+                                }).GetHtml()
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<h2>Index</h2>
-

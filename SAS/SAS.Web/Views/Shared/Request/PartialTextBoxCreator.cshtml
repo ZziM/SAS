@@ -1,0 +1,10 @@
+﻿@Html.DevExpress().TextBox(settings =>
+{
+    settings.Name = "textBoxCreator";
+    settings.Width = Unit.Percentage(100);
+    settings.Properties.Caption = "Creator";
+    settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+
+    settings.Text = @"JTICORP\CSTMAKILOD";
+    settings.ReadOnly = true;
+}).GetHtml()

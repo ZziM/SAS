@@ -1,0 +1,22 @@
+﻿@using SAS.Web.Models
+@model IEnumerable<ComboBoxEmployeeViewModel>
+
+@Html.DevExpress().ComboBox(settings => {
+    settings.Name = "comboBoxCustomer";
+    settings.Width = Unit.Percentage(100);
+    settings.SelectedIndex = -1;
+    settings.Properties.Caption = "Customer";
+    settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+    settings.Properties.DropDownWidth = Unit.Percentage(100);
+    settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+    settings.CallbackRouteValues = new { Controller = "WorkedEmployee", Action = "RenderPartialComboBoxCustomer" };
+    settings.Properties.CallbackPageSize = 30;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+    settings.Properties.TextFormatString = "{0}";
+    settings.Properties.ValueField = "ID";
+    settings.Properties.ValueType = typeof(int);
+
+    settings.Properties.Columns.Add("FullName", "Full Name");
+    settings.Properties.Columns.Add("Department", "Department");
+    settings.Properties.Columns.Add("Company", "Company");
+}).BindList(Model).GetHtml()

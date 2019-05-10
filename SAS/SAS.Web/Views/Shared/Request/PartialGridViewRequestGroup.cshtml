@@ -1,0 +1,40 @@
+﻿@using SAS.Web.Models;
+@using SAS.Web.Models.Request;
+@using SAS.Model.Abstract;
+@model BusinessObjectCollectionViewModel<IGroup, RequestGroupViewModel>
+
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "gvGroup";
+
+    settings.Width = Unit.Percentage(100);
+
+    settings.CallbackRouteValues = new { Controller = "WorkedEmployee", Action = "RenderGridViewGroup" };
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.None;
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.SettingsPopup.HeaderFilter.Height = 200;
+    settings.SettingsPopup.HeaderFilter.SettingsAdaptivity.MinHeight = 300;
+
+    settings.Settings.ShowGroupPanel = true;
+
+    settings.KeyFieldName = "ID";
+    settings.Columns.Add("Name");
+    settings.Columns.Add("GroupType");
+
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+    settings.SettingsDetail.ShowDetailRow = true;
+
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        Html.RenderAction("RenderGridViewGroupDetail", new { ID = DataBinder.Eval(c.DataItem, "ID") });
+    });
+
+    settings.ClientSideEvents.SelectionChanged = "SelectionChanged";
+
+}).Bind(Model.Model).GetHtml()

@@ -1,0 +1,17 @@
+﻿@using SAS.Web.Models
+@using SAS.Model.Abstract
+
+@model SAS.Web.Models.BusinessObjectCollectionViewModel<IAccessPoint, RequestAccessPointViewModel>
+
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "gridViewGroupDetail" + ViewData["ID"];
+    settings.SettingsDetail.MasterGridName = "gvGroup";
+    settings.CallbackRouteValues = new { Controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"], Action = "RenderGridViewGroupDetail", CustomerID = ViewData["CustomerID"] };
+    settings.Width = Unit.Percentage(100);
+
+    settings.KeyFieldName = "ID";
+    settings.Columns.Add("Name");
+
+    settings.Settings.ShowFooter = true;
+
+}).Bind(Model.Model).GetHtml()

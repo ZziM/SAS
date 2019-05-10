@@ -1,0 +1,9 @@
+﻿@Html.DevExpress().Memo(
+    settings => {
+        settings.Name = "memoBusinessReason";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.Rows = 10;
+
+        settings.Properties.Caption = "BusinessReason";
+        settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+    }).GetHtml()

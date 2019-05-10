@@ -4,7 +4,7 @@
     {
         string SAPNumber { get; set; }
         string Username { get; set; }
-        IDepartment Department { get; set; }
-        ICompany Company { get; set; }
+        string Department { get; set; }
+        string Company { get; set; }
     }
 }

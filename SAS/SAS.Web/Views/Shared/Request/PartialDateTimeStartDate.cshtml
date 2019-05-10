@@ -1,0 +1,10 @@
+﻿@Html.DevExpress().DateEdit(settings => {
+    settings.Name = "dateTimeStartAccessDate";
+
+    settings.Properties.Caption = "EndDate";
+    settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+
+    settings.Properties.MinDate = DateTime.Now;
+    settings.Width = Unit.Percentage(100);
+    settings.Properties.CalendarProperties.FastNavProperties.DisplayMode = FastNavigationDisplayMode.Inline;
+}).GetHtml()

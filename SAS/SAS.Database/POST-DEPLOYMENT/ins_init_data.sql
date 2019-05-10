@@ -32,7 +32,8 @@ VALUES('IT', 1)
 
 INSERT INTO [usr].[User] ([FirstName], [MiddleName], [LastName], [SAPNumber], [TabNumber], [Username], [UserTypeID], [ActiveStatusID], [CompanyID], [DepartmentID], [Email])
 VALUES
-('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1, 'Makolov.Denis@gmail.com')
+('Denis', 'Sergeevich', 'Makilov', '5216751', '54121', 'JTICORP\CSTMAKILOD', 1, 1, 1, 1, 'Makolov.Denis@gmail.com'),
+('Denis', 'Sergeevich', 'Arkilov', '5254559', '54551', 'JTICORP\CSTARGYUHA', 0, 1, 1, 1, 'Makolov.Denis@gmail.com')
 
 INSERT INTO [loc].[AccessPoint] ([Name], [ActiveStatusID])
 VALUES
@@ -54,13 +55,13 @@ VALUES
 (1, 1, 1),
 (1, 2, 1)
 
-INSERT INTO [rqs].[Customer] ([FirstName], [MiddleName], [LastName], [CustomerTypeID], [AdditionalInformation], [ActiveStatusID], [CompanyID], [DepartmentID], [Username])
+INSERT INTO [rqs].[Customer] ([FirstName], [MiddleName], [LastName], [CustomerTypeID], [AdditionalInformation], [ActiveStatusID], [Company], [Department], [Username])
 VALUES
-('Denis', 'Sergeevich', 'Makilov', 1, 'AdditionaInfo', 1, 1, 1, 'JTICORP\CSTMAKILOD')
+('Denis', 'Sergeevich', 'Makilov', 1, 'AdditionaInfo', 1, 'JTI', 'IT', 'JTICORP\CSTMAKILOD')
 
-INSERT INTO [rqs].[Request] ([ActiveStatusID], [AdditionalInformation], [BusinessReason], [CreateDate], [CreatorID], [CustomerID], [EndAccessDate], [StartAccessDate], [RequestTypeID], [Name])
+INSERT INTO [rqs].[Request] ([ActiveStatusID], [AdditionalInformation], [BusinessReason], [CreateDate], [CreatorID], [CustomerID], [EndAccessDate], [StartAccessDate], [RequestTypeID])
 VALUES
-(1, 'Additional information request', 'Business reason of the request', GETDATE(), 1, 1, GETDATE(), GETDATE(), 1, 'RQST1')
+(1, 'Additional information request', 'Business reason of the request', GETDATE(), 1, 1, GETDATE(), GETDATE(), 1)
 -------------------------------------------------------------------
 
 INSERT INTO [loc].[GroupType] ([ID], [Type])
@@ -91,10 +92,10 @@ INSERT INTO [rqs].[RequestGroupStatus] ([ID], [Status])
 VALUES
 (0, 'On Approval')
 
-INSERT INTO rqs.RequestedGroup (RequestID, GroupID, GroupName, GroupStatusID, ActiveStatusID)
+INSERT INTO rqs.RequestedGroup (RequestID, GroupName, GroupStatusID, ActiveStatusID)
 VALUES
-(1, 1, N'IT', 0, 1)
+(1, N'IT', 0, 1)
 
-INSERT INTO rqs.RequestedAccessPoint (RequestedGroupID, AccessPointID, AccessPointName, AccessPointStatusID, ActiveStatusID)
+INSERT INTO rqs.RequestedAccessPoint (RequestedGroupID, AccessPointName, AccessPointStatusID, ActiveStatusID)
 VALUES
-(1, 1, N'Проходная', 0, 1)
+(1, N'Проходная', 0, 1)

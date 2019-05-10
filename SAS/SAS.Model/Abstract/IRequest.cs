@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAS.Model.Factual;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,13 @@ namespace SAS.Model.Abstract
     {
         IEmployee Creator { get; set; }
         ICustomer Customer { get; set; }
-        string Name { get; set; }
         string AdditionalInformation { get; set; }
         string BusinessReason { get; set; }
         DateTime CreateDate { get; set; }
         DateTime StartAccessDate { get; set; }
         DateTime? EndAccessDate { get; set; }
         IQueryable<IRequestedGroup> Groups { get; }
+        RequestAccess RequestAccess { get; set; }
+        IRequestState RequestState { get; set; }
     }
 }

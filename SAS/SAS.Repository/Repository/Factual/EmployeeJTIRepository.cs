@@ -28,7 +28,7 @@ namespace SAS.Repository.Repository.Factual
 
         public IQueryable<IEmployeeJTI> ReadAll()
         {
-            throw new NotImplementedException();
+            return _db.EmployeesJTI;
         }
 
         public IQueryable<IEmployeeJTI> ReadAll(Expression<Func<IEmployeeJTI, bool>> expression)

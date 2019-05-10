@@ -32,6 +32,7 @@ namespace SAS.Model
         public DbSet<RequestVisitor>        RequestVisitors         { get; set; }
         public DbSet<RequestedAccessPoint>  RequestedAccessPoints   { get; set; }
         public DbSet<RequestedGroup>        RequestedGroups         { get; set; }
+        public DbSet<RequestState>          RequestStates { get; set; }
         #endregion
 
         #region ctor
@@ -55,6 +56,7 @@ namespace SAS.Model
             modelBuilder.Configurations.Add(new RequestConfiguration()              );
             modelBuilder.Configurations.Add(new RequestedAccessPointConfiguration() );
             modelBuilder.Configurations.Add(new RequestedGroupConfiguration()       );
+            modelBuilder.Configurations.Add(new RequestStateConfiguration()         );
         }
 
         class UserConfiguration             : EntityTypeConfiguration<User>
@@ -179,12 +181,7 @@ namespace SAS.Model
         {
             public CustomerEmployeeConfiguration()
             {
-                HasRequired(item => item.Company)
-                    .WithMany()
-                    .HasForeignKey(item => item.CompanyID);
-                HasRequired(item => item.Department)
-                    .WithMany()
-                    .HasForeignKey(item => item.DepartmentID);
+
             }
         }
         class RequestConfiguration          : EntityTypeConfiguration<Request>
@@ -194,6 +191,13 @@ namespace SAS.Model
                 ToTable("Request", "rqs");
                 Property(item => item.ActiveStatus)
                     .HasColumnName("ActiveStatusID");
+
+                Property(_ => _.RequestAccess)
+                    .HasColumnName("RequestAccessID");
+
+                HasRequired(_ => _.RequestState)
+                    .WithMany()
+                    .HasForeignKey(_ => _.RequestStateID);
 
                 Map<RequestJTI>(item =>
                 {
@@ -233,10 +237,6 @@ namespace SAS.Model
                 Property(_ => _.GroupStatus)
                     .HasColumnName("GroupStatusID");
 
-                HasOptional(_ => _.Group)
-                    .WithMany()
-                    .HasForeignKey(_ => _.GroupID);
-
                 HasRequired(_ => _.Request)
                     .WithMany()
                     .HasForeignKey(_ => _.RequestID);
@@ -264,6 +264,17 @@ namespace SAS.Model
 
                 Property(_ => _.ActiveStatus)
                     .HasColumnName("ActiveStatusID");
+            }
+        }
+
+        class RequestStateConfiguration : EntityTypeConfiguration<RequestState>
+        {
+            public RequestStateConfiguration()
+            {
+                ToTable("RequestState", "rqs");
+
+                HasKey(_ => _.ID);
+                Ignore(_ => _.State);
             }
         }
     }

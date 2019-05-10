@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SAS.Model.Abstract
 {
-    public interface ICustomer : IDbObject
+    public interface ICustomer
     {
         string FirstName { get; set; }
         string MiddleName { get; set; }

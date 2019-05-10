@@ -3,7 +3,6 @@
 	[ID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[CreatorID] INT NOT NULL,
 	[CustomerID] INT NOT NULL,
-	[Name] NVARCHAR(128) NOT NULL,
 	[RequestTypeID] INT NOT NULL,
 	[AdditionalInformation] NVARCHAR(2048),
 	[BusinessReason] NVARCHAR(2048) NOT NULL,
