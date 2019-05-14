@@ -1,9 +1,4 @@
 ﻿@Html.DevExpress().Memo(
     settings => {
-        settings.Name = "memoAdditionallInformation";
-        settings.Width = Unit.Percentage(100);
-        settings.Properties.Rows = 10;
-
-        settings.Properties.Caption = "Additional Information";
-        settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        MemoFunctions.ApplyDefault(settings, "memoAdditionallInformation", "Additional Information");
     }).GetHtml()

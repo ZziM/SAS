@@ -1,0 +1,17 @@
+﻿@using DevExpress.Web.Mvc;
+@using System.Web.UI.WebControls;
+@using DevExpress.Web;
+
+@functions{
+
+    public static void ApplyDefault(MemoSettings settings, string name, string caption)
+    {
+        settings.Name = name;
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.Rows = 10;
+
+        settings.Properties.Caption = caption;
+        settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+    }
+
+}

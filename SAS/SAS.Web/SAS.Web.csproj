@@ -254,6 +254,7 @@
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="packages.config" />
     <Content Include="libman.json" />
+    <Content Include="App_Code\MemoFunctions.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Request\baseRequest.js" />
@@ -288,6 +289,7 @@
     <Content Include="Views\Shared\Request\PartialGridViewRequestGroupDetail.cshtml" />
     <Content Include="Views\OnApproval\Index.cshtml" />
     <Content Include="Views\OnApproval\PartialGridViewAssignmentToMe.cshtml" />
+    <Content Include="Views\Shared\OnApproval\PartialMemoBusinessReason.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -337,6 +339,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="BL\Abastract\RequestPermissions\" />
+    <Folder Include="BL\Factual\RequestPermissions\" />
     <Folder Include="BL\Factual\Request\ApprovalProcess\" />
     <Folder Include="BL\Factual\Request\RejectProcess\" />
     <Folder Include="Helpers\Request\" />
