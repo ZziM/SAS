@@ -1,10 +1,8 @@
-﻿@Html.DevExpress().TextBox(settings =>
-{
-    settings.Name = "textBoxCreator";
-    settings.Width = Unit.Percentage(100);
-    settings.Properties.Caption = "Creator";
-    settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+﻿@using Labels = SAS.Web.Resources.Labels;
 
-    settings.Text = @"JTICORP\CSTMAKILOD";
+@Html.DevExpress().TextBox(settings =>
+{
+    TextBoxFunctions.ApplyDefault(settings, "textBoxCreator", Labels.Creator);
+    
     settings.ReadOnly = true;
-}).GetHtml()
+}).Bind(@"JTICORP\CSTMAKILOD").GetHtml()

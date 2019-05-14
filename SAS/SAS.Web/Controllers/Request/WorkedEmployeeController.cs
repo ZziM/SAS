@@ -6,6 +6,7 @@ using SAS.Web.BL.Factual.Model_Builder;
 using SAS.Web.BL.Factual.Request;
 using SAS.Web.Models;
 using SAS.Web.Models.Request;
+using Page = SAS.Web.Resources;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,13 +15,15 @@ namespace SAS.Web.Controllers.Request
 {
     public class WorkedEmployeeController : BaseRequestController
     {
+        public override string Title => Page.Pages.WorkedEmployee;
+
         public WorkedEmployeeController() : base()
         {
 
         }
         public ActionResult Index()
         {
-            return View("~/Views/Request/WorkedEmployee/Index.cshtml");
+            return View("~/Views/Request/WorkedEmployee/Index.cshtml", GeneratePageInfo());
         }
 
         public ActionResult RenderPartialComboBoxCustomer()

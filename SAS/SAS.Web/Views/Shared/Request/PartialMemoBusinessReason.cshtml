@@ -1,3 +1,5 @@
-﻿@Html.DevExpress().Memo(settings => {
-    MemoFunctions.ApplyDefault(settings, "memoBusinessReason", "BusinessReason");
+﻿@using Labels = SAS.Web.Resources.Labels;
+
+@Html.DevExpress().Memo(settings => {
+    MemoFunctions.ApplyDefault(settings, "memoBusinessReason", Labels.BusinessReason);
 }).GetHtml()

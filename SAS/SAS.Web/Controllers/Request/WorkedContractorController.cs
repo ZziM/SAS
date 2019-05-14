@@ -4,6 +4,7 @@ using SAS.Model.Factual;
 using SAS.Web.Models;
 using SAS.Web.Models.Request;
 using System;
+using Page = SAS.Web.Resources;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,10 +12,11 @@ namespace SAS.Web.Controllers.Request
 {
     public class WorkedContractorController : BaseRequestController
     {
+        public override string Title => Page.Pages.WorkedContractor;
         // GET: WorkedContractor
         public ActionResult Index()
         {
-            return View("~/Views/Request/WorkedContractor/Index.cshtml");
+            return View("~/Views/Request/WorkedContractor/Index.cshtml", GeneratePageInfo());
         }
 
         public ActionResult RenderPartialComboBoxCustomer()

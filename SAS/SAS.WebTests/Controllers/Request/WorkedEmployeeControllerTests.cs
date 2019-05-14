@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Ninject;
 using SAS.Repository.UnitOfWork.Abstract;
 using SAS.Web.Controllers.Request;
@@ -11,7 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace SAS.Web.Controllers.Request.Tests
 {
@@ -28,8 +31,7 @@ namespace SAS.Web.Controllers.Request.Tests
         public void RenderPartialComboBoxCustomerTest()
         {
             // Arrange
-            IKernel factory = new StandardKernel(new NinjectMapper());
-            var controller = factory.Get<WorkedEmployeeController>();
+            var controller = Factory.Get<WorkedEmployeeController>();
             //Act
             var viewResult = controller.RenderPartialComboBoxCustomer() as PartialViewResult;
             //Assert
@@ -40,12 +42,11 @@ namespace SAS.Web.Controllers.Request.Tests
         }
 
         [TestMethod()]
-        public override void RenderTextBoxCreator()
+        public override void RenderTextBoxCreatorTest()
         {
             // Arrange
-            IKernel factory = new StandardKernel(new NinjectMapper());
-            var db = factory.Get<IUnitOfWork>();
-            var controller = factory.Get<WorkedEmployeeController>();
+            var db = Factory.Get<IUnitOfWork>();
+            var controller = Factory.Get<WorkedEmployeeController>();
             //Act
             var viewResult = controller.RenderTextBoxCreator() as PartialViewResult;
             //Assert
@@ -54,25 +55,34 @@ namespace SAS.Web.Controllers.Request.Tests
         }
 
         [TestMethod]
-        public override void RenderGridViewGroup()
+        public override void RenderGridViewGroupTest()
         {
             // Arrange
-            IKernel factory = new StandardKernel(new NinjectMapper());
-            var db = factory.Get<IUnitOfWork>();
-            var controller = factory.Get<WorkedEmployeeController>();
+            var context = new Mock<HttpContextBase>();
+            var request = new Mock<HttpRequestBase>();
+            context
+                .Setup(c => c.Request)
+                .Returns(request.Object);
+            var route = new RouteData();
+            route.Values.Add("controller", "WorkedEmployee");
+            route.Values.Add("action", "RenderGridViewGroup");
+
+            var db = Factory.Get<IUnitOfWork>();
+            var controller = Factory.Get<WorkedEmployeeController>();
+            controller.ControllerContext = new ControllerContext(context.Object, route, controller);
+
             //Act
             var viewResult = controller.RenderGridViewGroup() as PartialViewResult;
             //Assert
             Assert.IsNotNull(viewResult);
             Assert.IsInstanceOfType(viewResult.Model, typeof(BusinessObjectCollectionViewModel<RequestGroupViewModel>));
-            Assert.IsTrue(string.Equals(viewResult.ViewName, "~/Views/Shared/Request/PartialGridVIewRequestGroup.cshtml", StringComparison.InvariantCultureIgnoreCase));
+            Assert.IsTrue(string.Equals(viewResult.ViewName, "~/Views/Shared/Request/PartialGridViewRequestGroup.cshtml", StringComparison.InvariantCultureIgnoreCase));
         }
         [TestMethod]
         public void CreateRequest()
         {
             //Arrange
-            IKernel factory = new StandardKernel(new NinjectMapper());
-            var db = factory.Get<IUnitOfWork>();
+            var db = Factory.Get<IUnitOfWork>();
             RequestWorkedEmployeeViewModel model = new RequestWorkedEmployeeViewModel
             {
                 Creator = db.Employees.ReadAll().First().Username,
@@ -86,7 +96,7 @@ namespace SAS.Web.Controllers.Request.Tests
                 AdditionalInformation = "I don't know what I should say =(",
                 BusinessReason = "Just for fun =)"
             };
-            var controller = factory.Get<WorkedEmployeeController>();
+            var controller = Factory.Get<WorkedEmployeeController>();
             //Act
             var viewResult = controller.CreateRequest(model);
             //Assert

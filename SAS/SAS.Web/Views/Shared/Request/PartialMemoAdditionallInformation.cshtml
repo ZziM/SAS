@@ -1,4 +1,6 @@
-﻿@Html.DevExpress().Memo(
+﻿@using Labels = SAS.Web.Resources.Labels;
+
+@Html.DevExpress().Memo(
     settings => {
-        MemoFunctions.ApplyDefault(settings, "memoAdditionallInformation", "Additional Information");
+        MemoFunctions.ApplyDefault(settings, "memoAdditionallInformation", Labels.AdditionalInformation);
     }).GetHtml()

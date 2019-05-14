@@ -264,6 +264,10 @@ namespace SAS.Model
 
                 Property(_ => _.ActiveStatus)
                     .HasColumnName("ActiveStatusID");
+
+                HasOptional(_ => _.AccessPoint)
+                    .WithMany()
+                    .HasForeignKey(_ => _.AccessPointID);
             }
         }
 

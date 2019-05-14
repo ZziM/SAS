@@ -1,0 +1,42 @@
+﻿@using DevExpress.Web.Mvc;
+@using System.Web.UI.WebControls;
+@using DevExpress.Web;
+
+@functions{
+
+    public static void ApplyDefault(GridViewSettings settings, string name)
+    {
+        settings.Name = name;
+        settings.Width = Unit.Percentage(100);
+
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.CommandColumn.ShowClearFilterButton = true;
+        settings.SettingsPopup.HeaderFilter.Height = 200;
+        settings.SettingsPopup.HeaderFilter.SettingsAdaptivity.MinHeight = 300;
+
+        settings.Settings.ShowGroupPanel = true;
+    }
+
+    public static MVCxGridViewColumn AddTextColumn(string name, string field, string caption)
+    {
+        var column = new MVCxGridViewColumn();
+        column.Name = name;
+        column.Caption = caption;
+        column.FieldName = field;
+        column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        return column;
+    }
+
+    public static MVCxGridViewColumn AddDateEditColumn(string name, string field, string caption)
+    {
+        var column = new MVCxGridViewColumn();
+        column.Name = name;
+        column.Caption = caption;
+        column.FieldName = field;
+        column.ColumnType = MVCxGridViewColumnType.DateEdit;
+        column.PropertiesEdit.DisplayFormatString = "d";
+        return column;
+    }
+}

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    On Approval
+                </div>
+                <div class="card-body">
+                    <div class="div-container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.DevExpress().Memo(settings =>
+                                {
+                                    MemoFunctions.ApplyDefault(settings, "memoAdditionalInformation", "Additional Information");
+                                    settings.ReadOnly = true;
+                                }).GetHtml()
+                            </div>
+                            <div class="col-md-12">
+                                @Html.DevExpress().Memo(settings =>
+                                {
+                                    MemoFunctions.ApplyDefault(settings, "memoBusinessReason", "BusinessReason");
+                                    settings.ReadOnly = true;
+                                }).GetHtml()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

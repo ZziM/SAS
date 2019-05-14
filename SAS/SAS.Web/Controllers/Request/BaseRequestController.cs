@@ -13,7 +13,7 @@ using SASWeb = SAS.Web.Helpers.Injection;
 
 namespace SAS.Web.Controllers.Request
 {
-    public abstract class BaseRequestController : Controller
+    public abstract class BaseRequestController : BaseController
     {
         [Inject]
         public IRequestManager Manager { get; set; }
@@ -33,7 +33,7 @@ namespace SAS.Web.Controllers.Request
 
         public ActionResult RenderGridViewGroup()
         {
-            var page = new PageInfo("");
+            var page = GeneratePageInfo();
             var data = DB.Groups.ReadAll().ToArray();
             var businessModel = new BusinessObjectCollectionViewModel<IGroup, RequestGroupViewModel>(page, data);
             return PartialView("~/Views/Shared/Request/PartialGridViewRequestGroup.cshtml", businessModel);
@@ -42,7 +42,7 @@ namespace SAS.Web.Controllers.Request
         public ActionResult RenderGridViewGroupDetail(int ID)
         {
             ViewData["ID"] = ID;
-            var page = new PageInfo("");
+            var page = GeneratePageInfo();
             var data = DB.Groups.ReadAll().Single(_ => _.ID == ID).AccessPoints.ToArray();
             var businessModel = new BusinessObjectCollectionViewModel<IAccessPoint, RequestAccessPointViewModel>(page, data);
             return PartialView("~/Views/Shared/Request/PartialGridViewRequestGroupDetail.cshtml", businessModel);

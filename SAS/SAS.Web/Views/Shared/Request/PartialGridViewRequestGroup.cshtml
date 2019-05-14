@@ -3,25 +3,11 @@
 @using SAS.Model.Abstract;
 @model BusinessObjectCollectionViewModel<IGroup, RequestGroupViewModel>
 
-@Html.DevExpress().GridView(settings => {
-    settings.Name = "gvGroup";
+@Html.DevExpress().GridView(settings =>
+{
+    GridViewFunctions.ApplyDefault(settings, "gvGroup");
 
-    settings.Width = Unit.Percentage(100);
-
-    settings.CallbackRouteValues = new { Controller = "WorkedEmployee", Action = "RenderGridViewGroup" };
-
-    settings.CommandColumn.Visible = true;
-    settings.CommandColumn.ShowSelectCheckbox = true;
-    settings.CommandColumn.ShowClearFilterButton = true;
-    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.None;
-
-    settings.Settings.ShowFilterRow = true;
-    settings.Settings.ShowFilterRowMenu = true;
-    settings.CommandColumn.ShowClearFilterButton = true;
-    settings.SettingsPopup.HeaderFilter.Height = 200;
-    settings.SettingsPopup.HeaderFilter.SettingsAdaptivity.MinHeight = 300;
-
-    settings.Settings.ShowGroupPanel = true;
+    settings.CallbackRouteValues = new { Controller = Model.Page.Controller, Action = Model.Page.Action };
 
     settings.KeyFieldName = "ID";
     settings.Columns.Add("Name");

@@ -1,0 +1,12 @@
+﻿@using Labels = SAS.Web.Resources.Labels;
+
+@Html.DevExpress().Button(settings =>
+{
+    ButtonFunctions.ApplyDefault(settings, "btnCreateRequest", Labels.Order);
+    settings.ClientSideEvents.Click = "btnCreateRequestOnClick";
+
+    settings.Images.Image.IconID = "actions_additem_16x16gray";
+    settings.ImagePosition = ImagePosition.Right;
+    settings.RenderMode = ButtonRenderMode.Button;
+
+}).GetHtml()

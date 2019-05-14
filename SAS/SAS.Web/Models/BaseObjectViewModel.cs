@@ -2,7 +2,7 @@
 {
     public abstract class BaseObjectViewModel
     {
-        public PageInfo Page { get; protected set; }
+        public PageInfo Page { get; set; }
         protected BaseObjectViewModel(PageInfo page)
         {
             Page = page;

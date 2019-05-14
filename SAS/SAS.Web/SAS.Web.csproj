@@ -255,6 +255,10 @@
     <Content Include="packages.config" />
     <Content Include="libman.json" />
     <Content Include="App_Code\MemoFunctions.cshtml" />
+    <Content Include="App_Code\GridViewFunctions.cshtml" />
+    <Content Include="App_Code\TextBoxFunctions.cshtml" />
+    <Content Include="App_Code\DateEditFunctions.cshtml" />
+    <Content Include="App_Code\ButtonFunctions.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Request\baseRequest.js" />
@@ -281,15 +285,17 @@
     <Content Include="Views\Shared\Request\PartialMemoBusinessReason.cshtml" />
     <Content Include="Views\Shared\Request\PartialGridViewRequestGroup.cshtml" />
     <Content Include="Views\Shared\Request\PartialTextBoxCreator.cshtml" />
-    <Content Include="Views\Shared\Request\PartialButtonAddGroup.cshtml" />
     <Content Include="Views\Shared\Request\PartialSelectionGroupSection.cshtml" />
     <Content Include="Views\Request\WorkedContractor\Index.cshtml" />
     <Content Include="Views\Shared\Request\PartialDateTimeStartDate.cshtml" />
     <Content Include="Views\Shared\Request\PartialDateTimeEndDate.cshtml" />
     <Content Include="Views\Shared\Request\PartialGridViewRequestGroupDetail.cshtml" />
     <Content Include="Views\OnApproval\Index.cshtml" />
-    <Content Include="Views\OnApproval\PartialGridViewAssignmentToMe.cshtml" />
+    <Content Include="Views\OnApproval\PartialGridViewOnApproval.cshtml" />
     <Content Include="Views\Shared\OnApproval\PartialMemoBusinessReason.cshtml" />
+    <Content Include="Views\OnApproval\Details.cshtml" />
+    <Content Include="Views\AssignmentТoMe\Index.cshtml" />
+    <Content Include="Views\Shared\Request\PartialButtonOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -313,6 +319,8 @@
     <Compile Include="BL\Factual\Model Builder\RequestedGroupBuilder.cs" />
     <Compile Include="BL\Factual\Model Builder\RequestJTIBuilder.cs" />
     <Compile Include="BL\Factual\Request\RequestManager.cs" />
+    <Compile Include="Controllers\AssignmentТoMeController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OnApprovalController.cs" />
     <Compile Include="Controllers\Request\BaseRequestController.cs" />
@@ -335,6 +343,21 @@
     <Compile Include="Models\Request\RequestWorkedContractorViewModel.cs" />
     <Compile Include="Models\Request\RequestWorkedEmployeeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Labels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Menu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +368,7 @@
     <Folder Include="BL\Factual\Request\RejectProcess\" />
     <Folder Include="Helpers\Request\" />
     <Folder Include="Scripts\Partial\Request\" />
+    <Folder Include="Views\BaseController\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SAS.Model\SAS.Model.csproj">
@@ -355,6 +379,20 @@
       <Project>{16654cfc-9202-4c2b-abbf-75439912d8b7}</Project>
       <Name>SAS.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Labels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Menu.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

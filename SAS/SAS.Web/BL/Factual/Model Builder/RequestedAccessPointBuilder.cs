@@ -10,11 +10,9 @@ namespace SAS.Web.BL.Factual.Model_Builder
     {
         public RequestedAccessPointBuilder(IUnitOfWork db, IRequestedGroup group, int id) : base(db)
         {
-            var accessPoint = db.AccessPoints.ReadAll().Single(_ => _.ID == id);
-
             Item.Group = group;
 
-            Item.AccessPointName = accessPoint.Name;
+            Item.AccessPoint = db.AccessPoints.ReadAll().Single(_ => _.ID == id);
             Item.AccessPointStatus = RequestAccessPointStatus.OnApproval;
         }
     }

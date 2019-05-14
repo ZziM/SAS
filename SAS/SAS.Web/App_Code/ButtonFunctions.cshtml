@@ -1,0 +1,14 @@
+﻿@using DevExpress.Web.Mvc;
+@using System.Web.UI.WebControls;
+@using DevExpress.Web;
+
+@functions{
+
+    public static void ApplyDefault(ButtonSettings settings, string name, string text)
+    {
+        settings.Name = name;
+        settings.Width = Unit.Percentage(100);
+        settings.Text= text;
+    }
+
+}

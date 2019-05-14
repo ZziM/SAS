@@ -1,18 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAS.WebTests.Controllers.Request
 {
     [TestClass]
-    public abstract class BaseRequestControllerTests
+    public abstract class BaseRequestControllerTests : BaseControllerTests
     {
         [TestMethod]
-        public abstract void RenderTextBoxCreator();
+        public abstract void RenderTextBoxCreatorTest();
         [TestMethod]
-        public abstract void RenderGridViewGroup();
+        public abstract void RenderGridViewGroupTest();
     }
 }

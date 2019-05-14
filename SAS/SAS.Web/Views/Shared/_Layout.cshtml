@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Menu = SAS.Web.Resources.Menu;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -68,40 +70,40 @@
 
          settings.Items.Add(itemStg =>
          {
-             itemStg.Text = "Home";
+             itemStg.Text = Menu.Home;
              itemStg.NavigateUrl = Url.RouteUrl("Default", new { controller = "Home", action = "Index" });
          });
          settings.Items.Add(item => {
-             item.Text = "Reuqest";
+             item.Text = Menu.Request;
              item.Items.Add(subItem =>
              {
-                 subItem.Text = "Employee";
-                 subItem.Items.Add("New");
+                 subItem.Text = Menu.Employee;
+                 subItem.Items.Add(Menu.NewEmployee);
                  subItem.Items.Add(itemStg =>
                  {
-                     itemStg.Text = "Worked";
+                     itemStg.Text = Menu.WorkedEmployee;
                      itemStg.NavigateUrl = Url.RouteUrl("Request", new { controller = "WorkedEmployee", action = "Index"});
                  });
              });
              item.Items.Add(subItem =>
              {
-                 subItem.Text = "Contractor";
-                 subItem.Items.Add("New");
+                 subItem.Text = Menu.Contractor;
+                 subItem.Items.Add(Menu.NewContractor);
                  subItem.Items.Add(itemStg =>
                  {
                      itemStg.Text = "Worked";
                      itemStg.NavigateUrl = Url.RouteUrl("Request", new { controller = "WorkedContractor", action = "Index" });
                  });
              });
-             item.Items.Add("Visitor");
+             item.Items.Add(Menu.Visitor);
          });
          settings.Items.Add(item => {
-             item.Text = "On Approval";
+             item.Text = Menu.OnApproval;
              item.NavigateUrl = Url.RouteUrl("Default", new { controller = "OnApproval", action = "Index" });
          });
 
-         settings.Items.Add("Assignment to Me");
-         settings.Items.Add("Archive");
+         settings.Items.Add(Menu.AssignmentToMe);
+         settings.Items.Add(Menu.Archive);
      }).GetHtml()
     @RenderBody()
 

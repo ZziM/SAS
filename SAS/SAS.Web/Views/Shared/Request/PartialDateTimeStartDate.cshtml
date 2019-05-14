@@ -1,10 +1,8 @@
-﻿@Html.DevExpress().DateEdit(settings => {
-    settings.Name = "dateTimeStartAccessDate";
+﻿@using Labels = SAS.Web.Resources.Labels;
 
-    settings.Properties.Caption = "EndDate";
-    settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+@Html.DevExpress().DateEdit(settings => {
+
+    DateEditFunctions.ApplyDefault(settings, "dateTimeStartAccessDate", Labels.StartAccessDate);
 
     settings.Properties.MinDate = DateTime.Now;
-    settings.Width = Unit.Percentage(100);
-    settings.Properties.CalendarProperties.FastNavProperties.DisplayMode = FastNavigationDisplayMode.Inline;
 }).GetHtml()

@@ -1,6 +1,7 @@
-﻿
+﻿@model SAS.Web.Models.PageInfo
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,7 +27,7 @@
             RequestedItemsID: RequestedItemsID,
             AdditionalInformation: memoAdditionallInformation.GetValue(),
             BusinessReason: memoBusinessReason.GetValue(),
-            StartAccessDate: dateTimeStartAccessDate.GetValue().toISOString(),    
+            StartAccessDate: dateTimeStartAccessDate.GetValue().toISOString(),
             EndAccessDate: dateTimeEndAccessDate.GetValue().toISOString()
         }
 
@@ -91,13 +92,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-2">
-                                @Html.DevExpress().Button(settings =>
-                                {
-                                    settings.Name = "btnCreateRequest";
-                                    settings.Width = Unit.Percentage(100);
-                                    settings.Text = "Order";
-                                    settings.ClientSideEvents.Click = "btnCreateRequestOnClick";
-                                }).GetHtml()
+                                @Html.Partial("~/Views/Shared/Request/PartialButtonOrder.cshtml")
                             </div>
                         </div>
                     </div>
