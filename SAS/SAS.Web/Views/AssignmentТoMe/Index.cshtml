@@ -10,13 +10,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    On Approval
+                    @Model.Title
                 </div>
                 <div class="card-body">
                     <div class="div-container">
                         <div class="row">
                             <div class="col-md-12">
-                                @Html.Action("RenderGridViewOnApproval", "AssignmentТoMe")
+                                @Html.Action("RenderPartialGridViewAssignment")
                             </div>
                         </div>
                     </div>

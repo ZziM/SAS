@@ -10,6 +10,7 @@ using SAS.WebTests.Controllers.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -82,10 +83,19 @@ namespace SAS.Web.Controllers.Request.Tests
         public void CreateRequest()
         {
             //Arrange
+
+            var mocks = new MockRepository(MockBehavior.Default);
+            Mock<IPrincipal> mockPrincipal = mocks.Create<IPrincipal>();
+            mockPrincipal.SetupGet(p => p.Identity.Name).Returns(@"JTICORP\CSTARGYUHA");
+            mockPrincipal.Setup(p => p.IsInRole("User")).Returns(true);
+
+            var mockContext = new Mock<ControllerContext>();
+            mockContext.SetupGet(p => p.HttpContext.User).Returns(mockPrincipal.Object);
+            mockContext.SetupGet(p => p.HttpContext.Request.IsAuthenticated).Returns(true);
+
             var db = Factory.Get<IUnitOfWork>();
             RequestWorkedEmployeeViewModel model = new RequestWorkedEmployeeViewModel
             {
-                Creator = db.Employees.ReadAll().First().Username,
                 CustomerID = db.EmployeesJTI.ReadAll().First().ID,
                 StartAccessDate = DateTime.Now,
                 RequestedItemsID = new[] 
@@ -97,6 +107,7 @@ namespace SAS.Web.Controllers.Request.Tests
                 BusinessReason = "Just for fun =)"
             };
             var controller = Factory.Get<WorkedEmployeeController>();
+            controller.ControllerContext = mockContext.Object;
             //Act
             var viewResult = controller.CreateRequest(model);
             //Assert

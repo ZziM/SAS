@@ -126,6 +126,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="LocationManagerApproval" xml:space="preserve">
+    <value>Location Manager Approval</value>
+  </data>
   <data name="NewContractor" xml:space="preserve">
     <value>New Contractor</value>
   </data>

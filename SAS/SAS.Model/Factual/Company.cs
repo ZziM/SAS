@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SAS.Model.Abstract;
+using System.Collections.Generic;
 using System.Linq;
-using SAS.Model.Abstract;
 
 namespace SAS.Model.Factual
 {

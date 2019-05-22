@@ -7,6 +7,7 @@ using System;
 using Page = SAS.Web.Resources;
 using System.Linq;
 using System.Web.Mvc;
+using SAS.Web.BL.Factual.Model_Builder;
 
 namespace SAS.Web.Controllers.Request
 {
@@ -28,61 +29,40 @@ namespace SAS.Web.Controllers.Request
 
         public ActionResult CreateRequest(RequestWorkedContractorViewModel model)
         {
-            //var request = Factory.Get<IRequestContractor>();
-            //request.RequestAccess = RequestAccess.OnLocationManager;
-            //var customer = Factory.Get<ICustomerContractor>();
+            ICustomerContractor customer = default(ICustomerContractor);
+            using (var builder = new CustomerContractorBuilder(DB, model))
+            {
+                customer = builder.Item;
+            }
 
-            //var customerEmployee = DB.Contractors.ReadAll()
-            //  .Single(_ => _.ID == model.CustomerID);
+            IRequestContractor request = default(IRequestContractor);
+            using (var builder = new RequestContractorBuilder(DB, customer, model, User.Identity))
+            {
+                request = builder.Item;
+                DB.Requests.Create(request);
+            }
 
-            //customer.FirstName = customerEmployee.FirstName;
-            //customer.MiddleName = customerEmployee.MiddleName;
-            //customer.LastName = customerEmployee.LastName;
-            //customer.SAPNumber = customerEmployee.SAPNumber;
-            //customer.Username = customerEmployee.Username;
-            //customer.Department = customerEmployee.Department.Name;
-            //customer.Company = customerEmployee.Company.Name;
+            foreach (var itemID in model.RequestedItemsID)
+            {
+                IRequestedGroup group = default(IRequestedGroup);
+                using (var builder = new RequestedGroupBuilder(DB, request, itemID))
+                {
+                    group = builder.Item;
+                    DB.RequestedGroups.Create(group);
+                }
 
-            //var creator = DB.Employees.ReadAll()
-            // .Single(_ => _.Username == model.Creator);
+                foreach (var item in DB.Groups.ReadAll().Single(_ => _.ID == itemID).AccessPoints)
+                {
+                    IRequestedAccessPoint accessPoint = default(IRequestedAccessPoint);
+                    using (var builder = new RequestedAccessPointBuilder(DB, group, item.ID))
+                    {
+                        accessPoint = builder.Item;
+                        DB.RequestedAccessPoints.Create(accessPoint);
+                    }
+                }
+            }
 
-            //request.Creator = creator;
-            //request.Customer = customer;
-
-            //request.CreateDate = DateTime.Now;
-            //request.StartAccessDate = model.StartAccessDate;
-            //request.EndAccessDate = model.EndAccessDate;
-            //request.AdditionalInformation = model.AdditionalInformation;
-            //request.BusinessReason = model.BusinessReason;
-
-            //DB.Requests.Create(request);
-
-            //foreach (var itemID in model.RequestedItemsID)
-            //{
-            //    var groupInformation = DB.Groups.ReadAll().Single(_ => _.ID == itemID);
-
-            //    var requestGroup = Factory.Get<IRequestedGroup>();
-            //    requestGroup.Request = request;
-
-            //    requestGroup.GroupName = groupInformation.Name;
-            //    requestGroup.GroupStatus = RequestGroupStatus.OnApproval;
-            //    DB.RequestedGroups.Create(requestGroup);
-
-            //    foreach (var accessPoint in groupInformation.AccessPoints)
-            //    {
-            //        var accessPointInformation = DB.AccessPoints.ReadAll().Single(_ => _.ID == accessPoint.ID);
-
-            //        var requestAccessPoint = Factory.Get<IRequestedAccessPoint>();
-            //        requestAccessPoint.Group = requestGroup;
-
-            //        requestAccessPoint.AccessPointName = accessPointInformation.Name;
-            //        requestAccessPoint.AccessPointStatus = RequestAccessPointStatus.OnApproval;
-
-            //        DB.RequestedAccessPoints.Create(requestAccessPoint);
-            //    }
-            //}
-
-            //DB.Save();
+            DB.Save();
 
             return RedirectToAction("Index");
         }

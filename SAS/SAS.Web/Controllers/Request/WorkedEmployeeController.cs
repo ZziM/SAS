@@ -36,13 +36,13 @@ namespace SAS.Web.Controllers.Request
         public ActionResult CreateRequest(RequestWorkedEmployeeViewModel model)
         {
             ICustomerJTI customer = default(ICustomerJTI);
-            using (var builder = new CustomerJTIBuilder(DB, model.CustomerID))
+            using (var builder = new CustomerJTIBuilder(DB, model))
             {
                 customer = builder.Item;
             }
 
             IRequestJTI request = default(IRequestJTI);
-            using (var builder = new RequestJTIBuilder(DB, customer, model))
+            using (var builder = new RequestJTIBuilder(DB, customer, model, User.Identity))
             {
                 request = builder.Item;
                 DB.Requests.Create(request);

@@ -29,12 +29,12 @@ namespace SAS.Repository.Repository.Factual
 
         public IQueryable<IRequestedGroup> ReadAll()
         {
-            throw new NotImplementedException();
+            return _db.RequestedGroups;
         }
 
         public IQueryable<IRequestedGroup> ReadAll(Expression<Func<IRequestedGroup, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _db.RequestedGroups.Where(expression);
         }
 
         public void Update(IRequestedGroup _)

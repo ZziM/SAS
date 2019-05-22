@@ -9,6 +9,8 @@ namespace SAS.Model.Injection
         public override void Load()
         {
             Bind<ICustomerJTI>().To<CustomerJTI>();
+            Bind<ICustomerVisitor>().To<CustomerVisitor>();
+            Bind<IRequestVisitor>().To<RequestVisitor>();
             Bind<IRequestJTI>().To<RequestJTI>();
             Bind<IRequestedGroup>().To<RequestedGroup>();
             Bind<IRequestedAccessPoint>().To<RequestedAccessPoint>();

@@ -12,6 +12,8 @@ namespace SAS.Web.Models.Request
         public int CreatorID { get; set; }
         [Required]
         public int CustomerID { get; set; }
+        [Required]
+        public string SAPNumber { get; set; }
         public string AdditionalInformation { get; set; }
         [Required]
         public string BusinessReason { get; set; }

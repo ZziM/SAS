@@ -10,12 +10,12 @@ namespace SAS.Web.Models.Request
         public string Creator { get; set; }
         [Required]
         public int CustomerID { get; set; }
-        public string AdditionalInformation { get; set; }
-        [Required]
-        public string BusinessReason { get; set; }
+        public int[] RequestedItemsID { get; set; }
         [Required]
         public DateTime StartAccessDate { get; set; }
         public Nullable<DateTime> EndAccessDate { get; set; }
-        public int[] RequestedItemsID { get; set; }
+        public string AdditionalInformation { get; set; }
+        [Required]
+        public string BusinessReason { get; set; }
     }
 }

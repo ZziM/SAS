@@ -1,6 +1,5 @@
 ﻿using SAS.Model.Abstract;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace SAS.Model.Factual
 {

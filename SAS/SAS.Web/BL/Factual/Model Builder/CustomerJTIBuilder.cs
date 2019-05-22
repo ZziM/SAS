@@ -11,10 +11,10 @@ namespace SAS.Web.BL.Factual.Model_Builder
 {
     public class CustomerJTIBuilder : BaseModelBuilder<ICustomerJTI>
     {
-        public CustomerJTIBuilder(IUnitOfWork db, int id) : base(db)
+        public CustomerJTIBuilder(IUnitOfWork db, RequestWorkedEmployeeViewModel model) : base(db)
         {
             var customerEmployee = db.EmployeesJTI.ReadAll()
-              .Single(_ => _.ID == id);
+              .Single(_ => _.ID == model.CustomerID);
 
             Item.FirstName = customerEmployee.FirstName;
             Item.MiddleName = customerEmployee.MiddleName;

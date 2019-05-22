@@ -8,7 +8,6 @@ namespace SAS.Model.Factual
     public class RequestedGroup : IRequestedGroup
     {
         public int ID { get; set; }
-        public string GroupName { get; set; }
         IRequest IRequestedGroup.Request
         {
             get
@@ -33,6 +32,18 @@ namespace SAS.Model.Factual
             }
         }
 
+        IGroup IRequestedGroup.Group
+        {
+            get => Group;
+            set
+            {
+                if(value is Group group)
+                {
+                    Group = group;
+                }
+            }
+        }
+
         public ActiveStatus ActiveStatus { get; set; }
 
         public DateTime DLM { get; set; }
@@ -42,6 +53,8 @@ namespace SAS.Model.Factual
         public virtual Request Request { get; set; }
         public virtual ICollection<RequestedAccessPoint> AccessPoints { get; set; }
         public RequestGroupStatus GroupStatus { get; set; }
+        public int GroupID { get; set; }
+        public virtual Group Group { get; set; }
         #endregion
 
         public RequestedGroup()

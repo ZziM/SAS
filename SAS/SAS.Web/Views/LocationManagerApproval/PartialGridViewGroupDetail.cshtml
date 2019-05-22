@@ -1,0 +1,50 @@
+﻿@using System;
+@using SAS.Web.Models
+@using SAS.Model.Abstract
+@using Labels = SAS.Web.Resources.Labels
+
+@model SAS.Web.Models.BusinessObjectCollectionViewModel<IRequestedAccessPoint, RequestedAccessPointViewModel>
+
+@Html.DevExpress().GridView(settings => {
+
+    GridViewFunctions.ApplyDefault(settings, "gridRequestViewRequestGroupDetail");
+    settings.CallbackRouteValues = new { Controller = Model.Page.Controller, Action = Model.Page.Action, requestID = ViewData["RequestID"], groupID = ViewData["GroupID"] };
+
+    settings.SettingsDetail.MasterGridName = "gvGroup";
+
+    settings.KeyFieldName = "AccessPointID";
+    settings.Columns.Add("Name");
+    settings.Columns.Add("Status");
+
+    GridViewCommandColumnCustomButton btnApprove = new GridViewCommandColumnCustomButton();
+    btnApprove.ID = "btnApprove";
+    btnApprove.Text = Labels.Approve;
+    settings.CommandColumn.CustomButtons.Add(btnApprove);
+
+    GridViewCommandColumnCustomButton btnReject = new GridViewCommandColumnCustomButton();
+    btnReject.ID = "btnReject";
+    btnReject.Text = Labels.Reject;
+    settings.CommandColumn.CustomButtons.Add(btnReject);
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = Labels.Commands;
+
+    settings.HtmlRowCreated = (s, e) =>
+    {
+        var hasPermissions = Convert.ToBoolean(e.GetValue("HasPermissions"));
+        e.Row.BackColor = hasPermissions ? ColorFunctions.SuccessColor() : ColorFunctions.IgnoreColor();
+
+        if (e.RowType == GridViewRowType.Data)
+        {
+            MVCxGridView g = s as MVCxGridView;
+            (g.Columns[0] as MVCxGridViewCommandColumn).CustomButtons["btnApprove"].Visibility = hasPermissions ? GridViewCustomButtonVisibility.AllDataRows : GridViewCustomButtonVisibility.Invisible;
+            (g.Columns[0] as MVCxGridViewCommandColumn).CustomButtons["btnReject"].Visibility = hasPermissions ? GridViewCustomButtonVisibility.AllDataRows : GridViewCustomButtonVisibility.Invisible;
+        }
+    };
+
+    settings.HtmlRowPrepared = (s, e) =>
+    {
+        var hasPermissions = Convert.ToBoolean(e.GetValue("HasPermissions"));
+        e.Row.BackColor = hasPermissions ? ColorFunctions.WarningColor() : ColorFunctions.IgnoreColor();
+    };
+}).Bind(Model.Model).GetHtml()

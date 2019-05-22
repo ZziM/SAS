@@ -1,15 +1,10 @@
 ﻿using Ninject;
 using SAS.Model.Abstract;
-using SAS.Repository.UnitOfWork.Abstract;
 using SAS.Web.BL.Abastract.Request;
 using SAS.Web.Models;
 using SAS.Web.Models.Request;
-using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web.Mvc;
-using SASModel = SAS.Model.Injection;
-using SASWeb = SAS.Web.Helpers.Injection;
 
 namespace SAS.Web.Controllers.Request
 {
@@ -17,13 +12,9 @@ namespace SAS.Web.Controllers.Request
     {
         [Inject]
         public IRequestManager Manager { get; set; }
-        [Inject]
-        public IUnitOfWork DB { get; set; }
-
-        protected IKernel Factory { get; private set; }
-        protected BaseRequestController()
+        protected BaseRequestController() : base()
         {
-            Factory = new StandardKernel(new SASModel.NinjectMapper(), new SASWeb.NinjectMapper());
+            
         }
 
         public ActionResult RenderTextBoxCreator()

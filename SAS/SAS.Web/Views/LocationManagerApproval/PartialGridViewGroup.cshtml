@@ -1,0 +1,25 @@
+﻿@using SAS.Web.Models;
+@using SAS.Model.Abstract;
+
+@model BusinessObjectCollectionViewModel<IRequestedGroup, RequestedGroupViewModel>
+
+@Html.DevExpress().GridView(settings =>
+{
+    GridViewFunctions.ApplyDefault(settings, "gvGroup");
+
+    settings.CallbackRouteValues = new { Controller = Model.Page.Controller, Action = Model.Page.Action, ID = ViewData["RequestID"] };
+
+    settings.KeyFieldName = "RequestID;GroupID";
+    settings.Columns.Add("Name");
+    settings.Columns.Add("GroupType");
+    settings.Columns.Add("GroupStatus");
+
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        Html.RenderAction("RenderGridViewRequestGroupDetail", Model.Page.Controller, new { requestID = DataBinder.Eval(c.DataItem, "RequestID"), groupID = DataBinder.Eval(c.DataItem, "GroupID") });
+    });
+
+}).Bind(Model.Model).GetHtml()

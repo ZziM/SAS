@@ -9,6 +9,7 @@ using SAS.Web.Models.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,7 +19,7 @@ using System.Web.Routing;
 namespace SAS.WebTests.Controllers
 {
     [TestClass]
-    class OnApprovalControllerTests : BaseControllerTests
+    public class OnApprovalControllerTests : BaseControllerTests
     {
         [TestMethod]
         public void IndexTest()
@@ -39,50 +40,65 @@ namespace SAS.WebTests.Controllers
             // Act
             var result = controller.Index();
             var model = result.Model;
+
             // Assert
+            Assert.IsTrue(result.ViewName == "Index");
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            Assert.IsInstanceOfType(model, typeof(PageInfo));
         }
 
         [TestMethod]
-        public void DetailsTest(int ID)
+        public void DetailsTest()
         {
-            // Arrange 
-            var httpContext = new Mock<HttpContextBase>();
-            var request = new Mock<HttpRequestBase>();
-            var route = new RouteData();
-            route.Values.Add("controller", "Details");
-            route.Values.Add("action", "RenderGridViewOnApprovalTest");
+            // Arrange
+            var mockPrincipal = new Mock<IPrincipal>();
 
-            httpContext.SetupGet(_ => _.Request)
-                .Returns(request.Object);
+            var route = new RouteData();
+            route.Values.Add("controller", "OnApproval");
+            route.Values.Add("action", "DetailsTest");
+
+            mockPrincipal.SetupGet(_ => _.Identity.Name).Returns(@"JTICORP\CSTARGYUHA");
+            var mockContext = new Mock<ControllerContext>();
+            mockContext.SetupGet(_ => _.HttpContext.User).Returns(mockPrincipal.Object);
+            mockContext.SetupGet(_ => _.RouteData).Returns(route);
 
             var controller = Factory.Get<OnApprovalController>();
-            controller.ControllerContext = new ControllerContext(httpContext.Object, route, controller);
+            controller.ControllerContext = mockContext.Object;
 
-            var id = Factory.Get<IUnitOfWork>().Requests.ReadAll().First().ID;
+            var id = Factory.Get<IUnitOfWork>().Requests
+                .ReadAll()
+                .First(_ => _.Creator.Username.Equals(@"JTICORP\CSTARGYUHA", StringComparison.InvariantCultureIgnoreCase)).ID;
+
             // Act
             var result = controller.Details(id);
-            var model = result.Model;
+            var model = result;
 
             // Assert
-            //Assert.IsTrue(result.ViewName, "")
-            Assert.IsNotNull(model);
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         [TestMethod]
         public void RenderGridViewOnApprovalTest()
         {
             // Arrange 
-            var httpContext = new Mock<HttpContextBase>();
-            var request = new Mock<HttpRequestBase>();
+            var mocks = new MockRepository(MockBehavior.Default);
+            Mock<IPrincipal> mockPrincipal = mocks.Create<IPrincipal>();
+            mockPrincipal.SetupGet(p => p.Identity.Name).Returns(@"JTICORP\CSTARGYUHA");
+
             var route = new RouteData();
             route.Values.Add("controller", "OnApproval");
-            route.Values.Add("action", "RenderGridViewOnApprovalTest");
+            route.Values.Add("action", "RenderGridViewOnApproval");
 
-            httpContext.SetupGet(_ => _.Request)
-                .Returns(request.Object);
+            var mockContext = new Mock<ControllerContext>();
+            mockContext.SetupGet(_ => _.RouteData).Returns(route);
+            mockContext.SetupGet(_ => _.HttpContext.User).Returns(mockPrincipal.Object);
+
+            IEnumerable<RequestViewModel> collection = null;
+
+            var db = Factory.Get<IUnitOfWork>();
 
             var controller = Factory.Get<OnApprovalController>();
-            controller.ControllerContext = new ControllerContext(httpContext.Object, route, controller);
+            controller.ControllerContext = mockContext.Object;
 
             // Act
             var result = controller.RenderGridViewOnApproval();
@@ -91,6 +107,9 @@ namespace SAS.WebTests.Controllers
             // Assert
             Assert.IsNotNull(model);
             Assert.IsInstanceOfType(model, typeof(BusinessObjectCollectionViewModel<IRequest, RequestViewModel>));
+            collection = (model as BusinessObjectCollectionViewModel<IRequest, RequestViewModel>).Model;
+
+            Assert.IsTrue(collection.Count() != default(int));
         }
     }
 }

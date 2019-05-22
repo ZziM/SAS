@@ -91,18 +91,27 @@
                  subItem.Items.Add(Menu.NewContractor);
                  subItem.Items.Add(itemStg =>
                  {
-                     itemStg.Text = "Worked";
+                     itemStg.Text = Menu.WorkedContractor;
                      itemStg.NavigateUrl = Url.RouteUrl("Request", new { controller = "WorkedContractor", action = "Index" });
                  });
              });
-             item.Items.Add(Menu.Visitor);
+             item.Items.Add(itemStg =>
+             {
+                 itemStg.Text = Menu.Visitor;
+                 itemStg.NavigateUrl = Url.RouteUrl("Request", new { controller = "Visitor", action = "Index" });
+             });
          });
          settings.Items.Add(item => {
              item.Text = Menu.OnApproval;
              item.NavigateUrl = Url.RouteUrl("Default", new { controller = "OnApproval", action = "Index" });
          });
 
-         settings.Items.Add(Menu.AssignmentToMe);
+         settings.Items.Add(item =>
+         {
+             item.Text = Menu.AssignmentToMe;
+             item.NavigateUrl = Url.RouteUrl("Default", new { controller = "AssignmentТoMe", action = "Index" });
+         });
+
          settings.Items.Add(Menu.Archive);
      }).GetHtml()
     @RenderBody()

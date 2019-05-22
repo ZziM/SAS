@@ -1,0 +1,31 @@
+﻿@using SAS.Web.Models;
+@using SAS.Web.Models.Request;
+@using SAS.Model.Abstract;
+@using Labels = SAS.Web.Resources.Labels;
+
+@model BusinessObjectCollectionViewModel<IRequest, RequestViewModel>
+
+@Html.DevExpress().GridView(settings =>
+{
+    GridViewFunctions.ApplyDefault(settings, "gvOnApproval");
+
+    settings.CallbackRouteValues = new { Controller = Model.Page.Controller, Action = Model.Page.Action };
+
+    settings.KeyFieldName = "ID";
+
+    settings.Columns.Add(GridViewFunctions.AddTextColumn(Labels.Name, "Name", Labels.Name));
+    settings.Columns.Add(GridViewFunctions.AddTextColumn(Labels.LastName, "LastName", Labels.LastName));
+    settings.Columns.Add(GridViewFunctions.AddTextColumn(Labels.FirstName, "FirstName", Labels.FirstName));
+    settings.Columns.Add(GridViewFunctions.AddTextColumn(Labels.MiddleName, "MiddleName", Labels.MiddleName));
+    settings.Columns.Add(GridViewFunctions.AddDateEditColumn(Labels.StartAccessDate, "StartAccessDate", Labels.StartAccessDate));
+    settings.Columns.Add(GridViewFunctions.AddDateEditColumn(Labels.EndAccessDate, "EndAccessDate", Labels.EndAccessDate));
+    settings.Columns.Add(GridViewFunctions.AddTextColumn(Labels.RequestType, "Type", Labels.RequestType));
+    settings.Columns.Add(GridViewFunctions.AddTextColumn(Labels.State, "State", Labels.State));
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.CustomButtons.Add(new GridViewCommandColumnCustomButton() { ID = "btnDetails", Text = Labels.Details });
+    settings.ClientSideEvents.CustomButtonClick =
+    string.Format("function(s, e) {{window.location.href = '{0}?ID=' + gvOnApproval.GetRowKey(e.visibleIndex);}}", Url.Action("Details", Model.Page.Controller));
+
+}).Bind(Model.Model).GetHtml()

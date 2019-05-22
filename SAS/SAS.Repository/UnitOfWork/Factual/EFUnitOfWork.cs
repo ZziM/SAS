@@ -4,10 +4,6 @@ using SAS.Repository.Repository.Abstract;
 using SAS.Repository.Repository.Factual;
 using SAS.Repository.UnitOfWork.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAS.Repository.UnitOfWork.Factual
 {

@@ -13,8 +13,7 @@ namespace SAS.Web.BL.Factual.Model_Builder
     {
         public RequestedGroupBuilder(IUnitOfWork db, IRequest request, int id) : base(db)
         {
-            var group = db.Groups.ReadAll().Single(_ => _.ID == id);
-            Item.GroupName = group.Name;
+            Item.Group = db.Groups.ReadAll().Single(_ => _.ID == id);
             Item.GroupStatus = RequestGroupStatus.OnApproval;
             Item.Request = request;
         }

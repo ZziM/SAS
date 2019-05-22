@@ -58,6 +58,10 @@ namespace SAS.Model.Factual
     {
         None = 0,
         OnLocationManager = 1,
-        OnSecurityImplementation = 2
+        OnSecurityImplementation = 2,
+        Rejected,
+        PartiallyApproved,
+        Approved,
+        Archived
     }
 }

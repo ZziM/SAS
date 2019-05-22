@@ -1,9 +1,16 @@
-﻿
+﻿@using SAS.Web.Models
+@using SAS.Model.Abstract
+@using SAS.Web.Models.Request
+@using Labels = SAS.Web.Resources.Labels;
+
+@model BusinessObjectViewModel<IRequest, RequestViewModel>
+
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+ViewBag.Title = Labels.Details;
+Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -14,19 +21,87 @@
                 <div class="card-body">
                     <div class="div-container">
                         <div class="row">
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textRequestType", Labels.RequestType);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.Type).GetHtml()
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textState", Labels.State);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.State).GetHtml()
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textCreator", Labels.Creator);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.Creator).GetHtml()
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textStartAccessDate", Labels.StartAccessDate);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.StartAccessDate.ToString("d")).GetHtml()
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textEndAccessDate", Labels.EndAccessDate);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.EndAccessDate.HasValue ? Model.Model.EndAccessDate.Value.ToString("d") : string.Empty).GetHtml()
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textBoxLastName", Labels.LastName);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.LastName).GetHtml()
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textMiddleName", Labels.MiddleName);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.MiddleName).GetHtml()
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DevExpress().TextBox(settings =>
+                                {
+                                    TextBoxFunctions.ApplyDefault(settings, "textBoxFirstName", Labels.FirstName);
+                                    settings.ReadOnly = true;
+                                }).Bind(Model.Model.FirstName).GetHtml()
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.Action("RenderPartialGridViewGroup", "OnApproval", new { ID = Model.Model.ID })
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                                 @Html.DevExpress().Memo(settings =>
                                 {
                                     MemoFunctions.ApplyDefault(settings, "memoAdditionalInformation", "Additional Information");
                                     settings.ReadOnly = true;
-                                }).GetHtml()
+                                }).Bind(Model.Model.AdditionalInformation).GetHtml()
                             </div>
                             <div class="col-md-12">
                                 @Html.DevExpress().Memo(settings =>
                                 {
                                     MemoFunctions.ApplyDefault(settings, "memoBusinessReason", "BusinessReason");
                                     settings.ReadOnly = true;
-                                }).GetHtml()
+                                }).Bind(Model.Model.BusinessReason).GetHtml()
                             </div>
                         </div>
                     </div>

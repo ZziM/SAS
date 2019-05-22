@@ -192,12 +192,13 @@ namespace SAS.Model
                 Property(item => item.ActiveStatus)
                     .HasColumnName("ActiveStatusID");
 
+                Ignore(_ => _.Type);
+
                 Property(_ => _.RequestAccess)
                     .HasColumnName("RequestAccessID");
 
-                HasRequired(_ => _.RequestState)
-                    .WithMany()
-                    .HasForeignKey(_ => _.RequestStateID);
+                Property(_ => _.State)
+                    .HasColumnName("RequestStateID");
 
                 Map<RequestJTI>(item =>
                 {
@@ -243,6 +244,10 @@ namespace SAS.Model
 
                 Property(_ => _.ActiveStatus)
                         .HasColumnName("ActiveStatusID");
+
+                HasRequired(_ => _.Group)
+                    .WithMany()
+                    .HasForeignKey(_ => _.GroupID);
             }
         }
 

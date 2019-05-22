@@ -1,0 +1,17 @@
+﻿@using SAS.Web.Models
+@using SAS.Model.Abstract
+
+@model SAS.Web.Models.BusinessObjectCollectionViewModel<IRequestedAccessPoint, RequestedAccessPointViewModel>
+
+@Html.DevExpress().GridView(settings => {
+
+    GridViewFunctions.ApplyDefault(settings, "gridRequestViewRequestGroupDetail");
+    settings.CallbackRouteValues = new { Controller = Model.Page.Controller, Action = Model.Page.Action, requestID = ViewData["RequestID"], groupID = ViewData["GroupID"] };
+
+    settings.SettingsDetail.MasterGridName = "gvGroup";
+
+    settings.KeyFieldName = "AccessPointID";
+    settings.Columns.Add("Name");
+    settings.Columns.Add("Status");
+
+}).Bind(Model.Model).GetHtml()

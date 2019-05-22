@@ -1,5 +1,4 @@
 ﻿using SAS.Model.Factual;
-using System;
 
 namespace SAS.Model.Abstract
 {

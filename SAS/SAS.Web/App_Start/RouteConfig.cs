@@ -14,13 +14,7 @@ namespace SAS_Web {
             routes.MapRoute(
                 name: "Request", // Route name
                 url: "Request/{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "WorkedContractor", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-
-            routes.MapRoute(
-                name: "RequestNewEmployee", // Route name
-                url: "Request/{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "NewEmployee", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                defaults: new { controller = "WorkedEmployee", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
             routes.MapRoute(

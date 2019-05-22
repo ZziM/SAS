@@ -31,6 +31,8 @@ namespace SAS.Model.Factual
             }
         }
 
+        public string SAPNumber { get; set; }
+
         #region EF
         public int DepartmentID { get; set; }
         public int CompanyID { get; set; }

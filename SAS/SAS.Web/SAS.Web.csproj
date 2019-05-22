@@ -259,6 +259,7 @@
     <Content Include="App_Code\TextBoxFunctions.cshtml" />
     <Content Include="App_Code\DateEditFunctions.cshtml" />
     <Content Include="App_Code\ButtonFunctions.cshtml" />
+    <Content Include="App_Code\ColorFunctions.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Request\baseRequest.js" />
@@ -285,17 +286,24 @@
     <Content Include="Views\Shared\Request\PartialMemoBusinessReason.cshtml" />
     <Content Include="Views\Shared\Request\PartialGridViewRequestGroup.cshtml" />
     <Content Include="Views\Shared\Request\PartialTextBoxCreator.cshtml" />
-    <Content Include="Views\Shared\Request\PartialSelectionGroupSection.cshtml" />
     <Content Include="Views\Request\WorkedContractor\Index.cshtml" />
     <Content Include="Views\Shared\Request\PartialDateTimeStartDate.cshtml" />
     <Content Include="Views\Shared\Request\PartialDateTimeEndDate.cshtml" />
     <Content Include="Views\Shared\Request\PartialGridViewRequestGroupDetail.cshtml" />
     <Content Include="Views\OnApproval\Index.cshtml" />
-    <Content Include="Views\OnApproval\PartialGridViewOnApproval.cshtml" />
+    <Content Include="Views\OnApproval\PartialGridViewRequest.cshtml" />
     <Content Include="Views\Shared\OnApproval\PartialMemoBusinessReason.cshtml" />
     <Content Include="Views\OnApproval\Details.cshtml" />
     <Content Include="Views\AssignmentТoMe\Index.cshtml" />
     <Content Include="Views\Shared\Request\PartialButtonOrder.cshtml" />
+    <Content Include="Views\AssignmentТoMe\PartialGridViewRequest.cshtml" />
+    <Content Include="Views\AssignmentТoMe\Details.cshtml" />
+    <Content Include="Views\Request\Visitor\Index.cshtml" />
+    <Content Include="Views\OnApproval\PartialGridViewGroup.cshtml" />
+    <Content Include="Views\OnApproval\PartialGridViewGroupDetail.cshtml" />
+    <Content Include="Views\LocationManagerApproval\Index.cshtml" />
+    <Content Include="Views\LocationManagerApproval\PartialGridViewGroup.cshtml" />
+    <Content Include="Views\LocationManagerApproval\PartialGridViewGroupDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -314,23 +322,30 @@
     <Compile Include="BL\Abastract\Request\ApprovalProcess\IApproveCommand.cs" />
     <Compile Include="BL\Abastract\Request\IRequestManager.cs" />
     <Compile Include="BL\Abastract\Request\RejectProcess\IRejectCommand.cs" />
+    <Compile Include="BL\Factual\Model Builder\CustomerContractorBuilder.cs" />
     <Compile Include="BL\Factual\Model Builder\CustomerJTIBuilder.cs" />
+    <Compile Include="BL\Factual\Model Builder\CustomerVisitorBuilder.cs" />
+    <Compile Include="BL\Factual\Model Builder\RequestContractorBuilder.cs" />
     <Compile Include="BL\Factual\Model Builder\RequestedAccessPointBuilder.cs" />
     <Compile Include="BL\Factual\Model Builder\RequestedGroupBuilder.cs" />
     <Compile Include="BL\Factual\Model Builder\RequestJTIBuilder.cs" />
+    <Compile Include="BL\Factual\Model Builder\RequestVisitorBuilder.cs" />
     <Compile Include="BL\Factual\Request\RequestManager.cs" />
     <Compile Include="Controllers\AssignmentТoMeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationManagerApprovalController.cs" />
     <Compile Include="Controllers\OnApprovalController.cs" />
     <Compile Include="Controllers\Request\BaseRequestController.cs" />
     <Compile Include="Controllers\Request\NewEmployeeController.cs" />
+    <Compile Include="Controllers\Request\VisitorController.cs" />
     <Compile Include="Controllers\Request\WorkedContractorController.cs" />
     <Compile Include="Controllers\Request\WorkedEmployeeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Injection\NinjectMapper.cs" />
+    <Compile Include="Helpers\User\User.cs" />
     <Compile Include="Models\BaseObjectViewModel.cs" />
     <Compile Include="Models\BusinessObjectViewModel.cs" />
     <Compile Include="Models\ComboBoxEmployeeViewModel.cs" />
@@ -338,8 +353,11 @@
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\BusinessObjectCollectionViewModel.cs" />
     <Compile Include="Models\RequestAccessPointViewModel.cs" />
+    <Compile Include="Models\RequestedAccessPointViewModel.cs" />
+    <Compile Include="Models\RequestedGroupViewModel.cs" />
     <Compile Include="Models\Request\RequestGroupViewModel.cs" />
     <Compile Include="Models\Request\RequestViewModel.cs" />
+    <Compile Include="Models\Request\RequestVisitorViewModel.cs" />
     <Compile Include="Models\Request\RequestWorkedContractorViewModel.cs" />
     <Compile Include="Models\Request\RequestWorkedEmployeeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

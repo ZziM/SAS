@@ -1,9 +1,6 @@
 ﻿using SAS.Model.Factual;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAS.Model.Abstract
 {
@@ -18,6 +15,7 @@ namespace SAS.Model.Abstract
         DateTime? EndAccessDate { get; set; }
         IQueryable<IRequestedGroup> Groups { get; }
         RequestAccess RequestAccess { get; set; }
-        IRequestState RequestState { get; set; }
+        EnumRequestState State { get; set; }
+        RequestType Type { get; }
     }
 }

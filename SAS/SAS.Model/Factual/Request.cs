@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAS.Model.Factual
 {
@@ -48,22 +46,10 @@ namespace SAS.Model.Factual
         public DateTime StartAccessDate { get; set; }
         public DateTime? EndAccessDate { get; set; }
         public RequestAccess RequestAccess { get; set; }
-        IRequestState IRequest.RequestState
-        {
-            get => RequestState;
-            set
-            {
-                if(value is RequestState requestState)
-                {
-                    RequestState = requestState;
-                    RequestStateID = requestState.ID;
-                }
-            }
-        }
+        public  EnumRequestState State { get; set; }
+        public virtual RequestType Type { get; }
 
         #region EF
-        public int RequestStateID { get; set; }
-        public virtual RequestState RequestState { get; set; }
         public int CustomerID { get; set; }
         public virtual Customer Customer {get;set;}
         public int CreatorID { get; set; }

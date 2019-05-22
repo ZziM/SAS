@@ -21,6 +21,10 @@
         Html.RenderAction("RenderGridViewGroupDetail", new { ID = DataBinder.Eval(c.DataItem, "ID") });
     });
 
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+
     settings.ClientSideEvents.SelectionChanged = "SelectionChanged";
 
 }).Bind(Model.Model).GetHtml()

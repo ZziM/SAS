@@ -88,6 +88,15 @@ namespace SAS.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location Manager Approval.
+        /// </summary>
+        public static string LocationManagerApproval {
+            get {
+                return ResourceManager.GetString("LocationManagerApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Contractor.
         /// </summary>
         public static string NewContractor {
